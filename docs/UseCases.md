@@ -27,29 +27,29 @@ It provides:
 
 ## 3. Actors
 
-| Actor | Description |
-|:------|:-------------|
-| **Landlord** | Owns and registers residences for rent. |
+| Actor               | Description                                                                             |
+|:--------------------|:----------------------------------------------------------------------------------------|
+| **Landlord**        | Owns and registers residences for rent.                                                 |
 | **Agent (Mesitis)** | Manages and updates property listings, calculates insights, and handles client queries. |
-| **Tenant** | Searches and views available residences to rent. |
-| **System** | Performs automated operations such as filtering, calculations, and data validation. |
+| **Tenant**          | Searches and views available residences to rent.                                        |
+| **System**          | Performs automated operations such as filtering, calculations, and data validation.     |
 
 ---
 
 ## 4. Implementation Status Summary
 
-| ID | Title | Implementation Status | Progress Notes |
-|:--:|:------|:----------------------|:----------------|
-| UC1 | Register a New Residence | 🚧 *In Progress* | Base model implemented (`Residence`, `Apartment`, `DetachedHouse`); input handling TBD |
-| UC2 | View Available Residences | 🔜 *Planned* | Display layer not yet integrated |
-| UC3 | Search Residence by Criteria | 🔜 *Planned* | To be implemented after collection logic |
-| UC4 | Update Residence Information | 🔜 *Planned* | Requires editable list structure |
-| UC5 | Delete Residence | 🔜 *Planned* | Depends on list management UI |
-| UC6 | Calculate Average Rent per Municipality | ❌ *Not Started* | Logic to be added in service layer |
-| UC7 | Display Detailed Residence Info | 🔜 *Planned* | To be added once viewing logic is complete |
-| UC8 | Generate Rental Report | ❌ *Not Started* | Future extension |
-| UC9 | Recommend Residences | ❌ *Not Started* | Future AI/logic module |
-| UC10 | Save/Load Data | ❌ *Not Started* | Will require persistence mechanism |
+|  ID  | Title                                   | Implementation Status | Progress Notes                                                                         |
+|:----:|:----------------------------------------|:----------------------|:---------------------------------------------------------------------------------------|
+| UC1  | Register a New Residence                | ✅ Implemented      | Core CLI logic and logger added; residence creation and registration verified via console. |
+| UC2  | View Available Residences               | 🔜 *Planned*          | Display layer not yet integrated                                                       |
+| UC3  | Search Residence by Criteria            | 🔜 *Planned*          | To be implemented after collection logic                                               |
+| UC4  | Update Residence Information            | 🔜 *Planned*          | Requires editable list structure                                                       |
+| UC5  | Delete Residence                        | 🔜 *Planned*          | Depends on list management UI                                                          |
+| UC6  | Calculate Average Rent per Municipality | 🔜 *Planned*          | Logic to be added in service layer                                                     |
+| UC7  | Display Detailed Residence Info         | 🔜 *Planned*          | To be added once viewing logic is complete                                             |
+| UC8  | Generate Rental Report                  | ❌ *Not Started*       | Future extension                                                                       |
+| UC9  | Recommend Residences                    | ❌ *Not Started*       | Future AI/logic module                                                                 |
+| UC10 | Save/Load Data                          | ❌ *Not Started*       | Will require persistence mechanism                                                     |
 
 ---
 
@@ -71,17 +71,20 @@ Tenant → (View / Search / View Details)
 ### **UC1 – Register a New Residence**
 **Primary Actor:** Landlord / Agent  
 **Goal:** Add a new property listing to the system.  
-**Implementation Status:** 🚧 *Partially Implemented*  
-**Progress Notes:** Constructors and setters are implemented; UI and validation pending.  
-**Preconditions:** User has access to the system.  
+**Implementation Status:** ✅ *Implemented*   
+**Progress Notes:**   
+- CLI-based flow operational for both Apartment and DetachedHouse.
+- Validation and persistence planned for next milestone.
+**Preconditions:** User has access to the system via CLI.
 **Main Flow:**
-1. User selects “Add Residence”.
-2. System prompts for type (Apartment / Detached House).
-3. User enters details (municipality, area, construction year, bedrooms, bathrooms, price).
-4. For *Apartment*: floor, parking, warehouse.  
-   For *DetachedHouse*: floors, plot area, fireplace.
-5. System validates and stores the residence.  
-**Postconditions:** The residence object is created and added to the list of available properties.
+1. System logs message: “=== Register a New Residence ===”
+2. User selects residence type (Apartment or Detached House).
+3. System prompts for details (municipality, area, construction year, bedrooms, bathrooms, rent).
+4. For Apartment: input includes floor, parking, warehouse.
+   For DetachedHouse: input includes floors, plot area, fireplace.
+5. System creates a new residence object and stores it in memory.
+6. System logs successful registration message.
+**Postconditions:** Residence is registered and stored in the current runtime session.
 
 ---
 
@@ -144,7 +147,7 @@ Tenant → (View / Search / View Details)
 ### **UC6 – Calculate Average Rent per Municipality**
 **Primary Actor:** Agent  
 **Goal:** Retrieve average rental prices grouped by municipality.  
-**Implementation Status:** ❌ *Not Started*  
+**Implementation Status:** 🔜 *Planned*  
 **Progress Notes:** Will require an aggregation method across all residences.  
 **Main Flow:**
 1. System iterates through all residences.
@@ -176,11 +179,11 @@ Tenant → (View / Search / View Details)
 
 ## 8. Future Use Cases (Planned)
 
-| ID | Title | Description | Implementation Status | Notes |
-|:--:|:------|:-------------|:----------------------|:------|
-| UC8 | Generate Rental Report | Export summary (PDF/CSV) of all residences. | ❌ *Not Started* | Reporting planned for Phase 2 |
-| UC9 | Recommend Residences | Suggest properties based on user preferences. | ❌ *Not Started* | To integrate with recommendation module |
-| UC10 | Save/Load Data | Persist and retrieve listings from a database or file. | ❌ *Not Started* | Will require serialization or JDBC implementation |
+|  ID  | Title                  | Description                                            | Implementation Status | Notes                                             |
+|:----:|:-----------------------|:-------------------------------------------------------|:----------------------|:--------------------------------------------------|
+| UC8  | Generate Rental Report | Export summary (PDF/CSV) of all residences.            | ❌ *Not Started*       | Reporting planned for Phase 2                     |
+| UC9  | Recommend Residences   | Suggest properties based on user preferences.          | ❌ *Not Started*       | To integrate with recommendation module           |
+| UC10 | Save/Load Data         | Persist and retrieve listings from a database or file. | ❌ *Not Started*       | Will require serialization or JDBC implementation |
 
 ---
 

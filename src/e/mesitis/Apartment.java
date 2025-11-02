@@ -7,7 +7,8 @@ package e.mesitis;
 public class Apartment extends Residence {
     
     private String floor;
-    private boolean parkingSpot, warehouse;
+    private boolean parkingSpot;
+    private boolean warehouse;
 
     public Apartment(String floor, boolean parkingSpot, boolean warehouse, String municipality, float area, int constructionYear, int bedrooms, int bathrooms, double rentalPrice) {
         super(municipality, area, constructionYear, bedrooms, bathrooms, rentalPrice);
@@ -48,5 +49,12 @@ public class Apartment extends Residence {
     public void setWarehouse(boolean warehouse) {
         this.warehouse = warehouse;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Apartment in " + getMunicipality() + " (" + getArea() + " m², " +
+                getBedrooms() + " beds, " + getBathrooms() + " baths, " +
+                "floor: " + floor + ", parking: " + parkingSpot + ", warehouse: " + warehouse + ")";
+    }
+
 }

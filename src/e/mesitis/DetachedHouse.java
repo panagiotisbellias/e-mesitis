@@ -49,5 +49,12 @@ public class DetachedHouse extends Residence {
     public void setFireplace(boolean fireplace) {
         this.fireplace = fireplace;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Detached House in " + getMunicipality() + " (" + getArea() + " m², " +
+                getBedrooms() + " beds, " + getBathrooms() + " baths, " +
+                "floors: " + floors + ", plot area: " + plotArea + ", fireplace: " + fireplace + ")";
+    }
+
 }
