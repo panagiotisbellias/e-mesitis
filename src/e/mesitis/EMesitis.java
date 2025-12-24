@@ -18,6 +18,36 @@ public class EMesitis {
         Scanner scanner = new Scanner(System.in);
         ResidenceRegistry registry = new ResidenceRegistry();
 
+        boolean running = true;
+
+        while (running) {
+            logger.info("""
+                === e-Mesitis ===
+                1. Register a new residence
+                2. View available residences
+                0. Exit
+                Choose option:
+                """);
+
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // consume newline
+
+            switch (choice) {
+                case 1 -> registerResidence(scanner, registry);
+                case 2 -> registry.listResidences();
+                case 0 -> {
+                    logger.info("Exiting application.");
+                    running = false;
+                }
+                default -> logger.warning("Invalid option.");
+            }
+        }
+
+        scanner.close();
+    }
+
+    private static void registerResidence(Scanner scanner, ResidenceRegistry registry) {
+
         logger.info("=== Register a New Residence ===");
         logger.info("Enter type (1 = Apartment, 2 = Detached House): ");
         int type = scanner.nextInt();
@@ -42,12 +72,15 @@ public class EMesitis {
         double price = scanner.nextDouble();
 
         Residence residence;
+
         if (type == 1) {
             scanner.nextLine();
             logger.info("Floor: ");
             String floor = scanner.nextLine();
+
             logger.info("Has parking spot (true/false): ");
             boolean parking = scanner.nextBoolean();
+
             logger.info("Has warehouse (true/false): ");
             boolean warehouse = scanner.nextBoolean();
 
@@ -56,8 +89,10 @@ public class EMesitis {
         } else {
             logger.info("Floors: ");
             int floors = scanner.nextInt();
+
             logger.info("Plot area (m²): ");
             float plotArea = scanner.nextFloat();
+
             logger.info("Has fireplace (true/false): ");
             boolean fireplace = scanner.nextBoolean();
 
@@ -66,6 +101,7 @@ public class EMesitis {
 
         registry.addResidence(residence);
         registry.listResidences();
+        logger.info("Residence registered successfully.");
     }
     
 }

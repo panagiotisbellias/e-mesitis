@@ -8,22 +8,26 @@ public class DetachedHouse extends Residence {
     
     private int floors;
     private float plotArea;
-    private boolean fireplace;
+    private boolean hasFireplace;
 
-    public DetachedHouse(int floors, float plotArea, boolean fireplace, String municipality, float area, int constructionYear, int bedrooms, int bathrooms, double rentalPrice) {
+    public DetachedHouse(int floors, float plotArea, boolean hasFireplace, String municipality, float area, int constructionYear, int bedrooms, int bathrooms, double rentalPrice) {
         super(municipality, area, constructionYear, bedrooms, bathrooms, rentalPrice);
         this.floors = floors;
         this.plotArea = plotArea;
-        this.fireplace = fireplace;
+        this.hasFireplace = hasFireplace;
     }
 
-    public DetachedHouse(int floors, float plotArea, boolean fireplace) {
+    public DetachedHouse(int floors, float plotArea, boolean hasFireplace) {
         this.floors = floors;
         this.plotArea = plotArea;
-        this.fireplace = fireplace;
+        this.hasFireplace = hasFireplace;
     }
 
-    public DetachedHouse() {
+    public DetachedHouse() {}
+
+    @Override
+    public String getType() {
+        return "DetachedHouse";
     }
 
     public int getFloors() {
@@ -43,18 +47,27 @@ public class DetachedHouse extends Residence {
     }
 
     public boolean isFireplace() {
-        return fireplace;
+        return hasFireplace;
     }
 
-    public void setFireplace(boolean fireplace) {
-        this.fireplace = fireplace;
+    public void setFireplace(boolean hasFireplace) {
+        this.hasFireplace = hasFireplace;
     }
 
     @Override
     public String toString() {
         return "Detached House in " + getMunicipality() + " (" + getArea() + " m², " +
                 getBedrooms() + " beds, " + getBathrooms() + " baths, " +
-                "floors: " + floors + ", plot area: " + plotArea + ", fireplace: " + fireplace + ")";
+                "floors: " + floors + ", plot area: " + plotArea + ", fireplace: " + hasFireplace + ")";
+    }
+
+    @Override
+    public String basicInfo() {
+        return super.basicInfo() +
+                String.format(" | Floors: %d | Plot: %.1f m² | Fireplace: %-5s",
+                        floors,
+                        plotArea,
+                        hasFireplace);
     }
 
 }

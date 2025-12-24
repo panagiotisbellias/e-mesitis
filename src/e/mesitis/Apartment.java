@@ -7,23 +7,27 @@ package e.mesitis;
 public class Apartment extends Residence {
     
     private String floor;
-    private boolean parkingSpot;
-    private boolean warehouse;
+    private boolean hasParkingSpot;
+    private boolean hasWarehouse;
 
-    public Apartment(String floor, boolean parkingSpot, boolean warehouse, String municipality, float area, int constructionYear, int bedrooms, int bathrooms, double rentalPrice) {
+    public Apartment(String floor, boolean hasParkingSpot, boolean hasWarehouse, String municipality, float area, int constructionYear, int bedrooms, int bathrooms, double rentalPrice) {
         super(municipality, area, constructionYear, bedrooms, bathrooms, rentalPrice);
         this.floor = floor;
-        this.parkingSpot = parkingSpot;
-        this.warehouse = warehouse;
+        this.hasParkingSpot = hasParkingSpot;
+        this.hasWarehouse = hasWarehouse;
     }
 
-    public Apartment(String floor, boolean parkingSpot, boolean warehouse) {
+    public Apartment(String floor, boolean hasParkingSpot, boolean hasWarehouse) {
         this.floor = floor;
-        this.parkingSpot = parkingSpot;
-        this.warehouse = warehouse;
+        this.hasParkingSpot = hasParkingSpot;
+        this.hasWarehouse = hasWarehouse;
     }
 
-    public Apartment() {
+    public Apartment() {}
+
+    @Override
+    public String getType() {
+        return "Apartment";
     }
 
     public String getFloor() {
@@ -34,27 +38,36 @@ public class Apartment extends Residence {
         this.floor = floor;
     }
 
-    public boolean isParkingSpot() {
-        return parkingSpot;
+    public boolean hasParkingSpot() {
+        return hasParkingSpot;
     }
 
-    public void setParkingSpot(boolean parkingSpot) {
-        this.parkingSpot = parkingSpot;
+    public void setParkingSpot(boolean hasParkingSpot) {
+        this.hasParkingSpot = hasParkingSpot;
     }
 
-    public boolean isWarehouse() {
-        return warehouse;
+    public boolean hasWarehouse() {
+        return hasWarehouse;
     }
 
-    public void setWarehouse(boolean warehouse) {
-        this.warehouse = warehouse;
+    public void setWarehouse(boolean hasWarehouse) {
+        this.hasWarehouse = hasWarehouse;
     }
 
     @Override
     public String toString() {
         return "Apartment in " + getMunicipality() + " (" + getArea() + " m², " +
                 getBedrooms() + " beds, " + getBathrooms() + " baths, " +
-                "floor: " + floor + ", parking: " + parkingSpot + ", warehouse: " + warehouse + ")";
+                "floor: " + floor + ", parking: " + hasParkingSpot + ", warehouse: " + hasWarehouse + ")";
+    }
+
+    @Override
+    public String basicInfo() {
+        return super.basicInfo() +
+                String.format(" | Floor: %-5s | Parking: %-5s | Warehouse: %-5s",
+                        floor,
+                        hasParkingSpot,
+                        hasWarehouse);
     }
 
 }

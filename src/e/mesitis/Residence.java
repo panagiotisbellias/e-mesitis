@@ -5,13 +5,15 @@ package e.mesitis;
  * @author Panagiotis Bellias
  */
 public abstract class Residence {
-    
-    private String municipality;
-    private float area;
-    private int constructionYear, bedrooms, bathrooms;
-    private double rentalPrice;
 
-    public Residence(String municipality, float area, int constructionYear, int bedrooms, int bathrooms, double rentalPrice) {
+    protected String municipality;
+    protected float area;
+    protected int constructionYear;
+    protected int bedrooms;
+    protected int bathrooms;
+    protected double rentalPrice;
+
+    protected Residence(String municipality, float area, int constructionYear, int bedrooms, int bathrooms, double rentalPrice) {
         this.municipality = municipality;
         this.area = area;
         this.constructionYear = constructionYear;
@@ -20,10 +22,10 @@ public abstract class Residence {
         this.rentalPrice = rentalPrice;
     }
 
-    public Residence() {
-    }
+    protected Residence() {}
 
-    
+    public abstract String getType();
+
     public String getMunicipality() {
         return municipality;
     }
@@ -70,6 +72,18 @@ public abstract class Residence {
 
     public void setRentalPrice(double rentalPrice) {
         this.rentalPrice = rentalPrice;
+    }
+
+    public String basicInfo() {
+        return String.format(
+                "%-15s | %-12s | %6.1f m² | %2d bd | %2d ba | €%8.2f",
+                getType(),
+                municipality,
+                area,
+                bedrooms,
+                bathrooms,
+                rentalPrice
+        );
     }
     
 }

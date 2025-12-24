@@ -38,18 +38,18 @@ It provides:
 
 ## 4. Implementation Status Summary
 
-|  ID  | Title                                   | Implementation Status | Progress Notes                                                                         |
-|:----:|:----------------------------------------|:----------------------|:---------------------------------------------------------------------------------------|
-| UC1  | Register a New Residence                | ✅ Implemented      | Core CLI logic and logger added; residence creation and registration verified via console. |
-| UC2  | View Available Residences               | 🔜 *Planned*          | Display layer not yet integrated                                                       |
-| UC3  | Search Residence by Criteria            | 🔜 *Planned*          | To be implemented after collection logic                                               |
-| UC4  | Update Residence Information            | 🔜 *Planned*          | Requires editable list structure                                                       |
-| UC5  | Delete Residence                        | 🔜 *Planned*          | Depends on list management UI                                                          |
-| UC6  | Calculate Average Rent per Municipality | 🔜 *Planned*          | Logic to be added in service layer                                                     |
-| UC7  | Display Detailed Residence Info         | 🔜 *Planned*          | To be added once viewing logic is complete                                             |
-| UC8  | Generate Rental Report                  | ❌ *Not Started*       | Future extension                                                                       |
-| UC9  | Recommend Residences                    | ❌ *Not Started*       | Future AI/logic module                                                                 |
-| UC10 | Save/Load Data                          | ❌ *Not Started*       | Will require persistence mechanism                                                     |
+|  ID  | Title                                   | Implementation Status | Progress Notes                                                                             |
+|:----:|:----------------------------------------|:----------------------|:-------------------------------------------------------------------------------------------|
+| UC1  | Register a New Residence                | ✅ Implemented         | Core CLI logic and logger added; residence creation and registration verified via console. |
+| UC2  | View Available Residences               | ✅ Implemented         | Display layer not yet integrated                                                           |
+| UC3  | Search Residence by Criteria            | 🔜 *Planned*          | To be implemented after collection logic                                                   |
+| UC4  | Update Residence Information            | 🔜 *Planned*          | Requires editable list structure                                                           |
+| UC5  | Delete Residence                        | 🔜 *Planned*          | Depends on list management UI                                                              |
+| UC6  | Calculate Average Rent per Municipality | 🔜 *Planned*          | Logic to be added in service layer                                                         |
+| UC7  | Display Detailed Residence Info         | 🔜 *Planned*          | To be added once viewing logic is complete                                                 |
+| UC8  | Generate Rental Report                  | ❌ *Not Started*       | Future extension                                                                           |
+| UC9  | Recommend Residences                    | ❌ *Not Started*       | Future AI/logic module                                                                     |
+| UC10 | Save/Load Data                          | ❌ *Not Started*       | Will require persistence mechanism                                                         |
 
 ---
 
@@ -91,7 +91,7 @@ Tenant → (View / Search / View Details)
 ### **UC2 – View Available Residences**
 **Primary Actor:** Tenant / Agent  
 **Goal:** Browse all available property listings.  
-**Implementation Status:** 🔜 *Planned*  
+**Implementation Status:** ✅ *Implemented*  
 **Progress Notes:** To be developed after list management logic.  
 **Main Flow:**
 1. User requests list of all residences.
