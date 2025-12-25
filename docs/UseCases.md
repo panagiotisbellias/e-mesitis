@@ -42,7 +42,7 @@ It provides:
 |:----:|:----------------------------------------|:----------------------|:-------------------------------------------------------------------------------------------|
 | UC1  | Register a New Residence                | ✅ Implemented         | Core CLI logic and logger added; residence creation and registration verified via console. |
 | UC2  | View Available Residences               | ✅ Implemented         | Display layer not yet integrated                                                           |
-| UC3  | Search Residence by Criteria            | 🔜 *Planned*          | To be implemented after collection logic                                                   |
+| UC3  | Search Residence by Criteria            | ✅ Implemented         | To be implemented after collection logic                                                   |
 | UC4  | Update Residence Information            | 🔜 *Planned*          | Requires editable list structure                                                           |
 | UC5  | Delete Residence                        | 🔜 *Planned*          | Depends on list management UI                                                              |
 | UC6  | Calculate Average Rent per Municipality | 🔜 *Planned*          | Logic to be added in service layer                                                         |
@@ -104,7 +104,7 @@ Tenant → (View / Search / View Details)
 ### **UC3 – Search Residence by Criteria**
 **Primary Actor:** Tenant  
 **Goal:** Find properties matching user criteria.  
-**Implementation Status:** 🔜 *Planned*  
+**Implementation Status:** ✅ *Implemented*  
 **Progress Notes:** Filtering logic to be implemented in data service layer.  
 **Preconditions:** Residences exist in the system.  
 **Main Flow:**

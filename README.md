@@ -56,6 +56,7 @@ e.mesitis.EMesitis main
 INFO: === e-Mesitis ===
 1. Register a new residence
 2. View available residences
+3. Search residence by criteria
 0. Exit
 Choose option:
 ```
@@ -74,7 +75,7 @@ ant clean
 
 ## 🧭 Next Steps
 
-- UC3 - Search Residence by Criteria
+- UC4 – Update Residence Information
 - Add data persistence (save/load from file)
 - Introduce Swing or JavaFX interface
 - Add validation and exception handling

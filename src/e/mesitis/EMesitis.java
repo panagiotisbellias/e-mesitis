@@ -25,6 +25,7 @@ public class EMesitis {
                 === e-Mesitis ===
                 1. Register a new residence
                 2. View available residences
+                3. Search residence by criteria
                 0. Exit
                 Choose option:
                 """);
@@ -33,8 +34,9 @@ public class EMesitis {
             scanner.nextLine(); // consume newline
 
             switch (choice) {
-                case 1 -> registerResidence(scanner, registry);
-                case 2 -> registry.listResidences();
+                case 1 -> registerResidence(scanner, registry); // UC1
+                case 2 -> registry.listResidences();            // UC2
+                case 3 -> searchResidences(scanner, registry);  // UC3
                 case 0 -> {
                     logger.info("Exiting application.");
                     running = false;
@@ -102,6 +104,40 @@ public class EMesitis {
         registry.addResidence(residence);
         registry.listResidences();
         logger.info("Residence registered successfully.");
+    }
+
+    private static void searchResidences(Scanner scanner, ResidenceRegistry registry) {
+
+        logger.info("=== Search Residence by Criteria ===");
+
+        logger.info("Municipality (leave empty to ignore): ");
+        String municipality = scanner.nextLine();
+
+        logger.info("Max rental price (0 to ignore): ");
+        double priceInput = scanner.nextDouble();
+
+        logger.info("Minimum bedrooms (0 to ignore): ");
+        int bedroomsInput = scanner.nextInt();
+        scanner.nextLine();
+
+        Double maxPrice = priceInput > 0 ? priceInput : null;
+        Integer minBedrooms = bedroomsInput > 0 ? bedroomsInput : null;
+
+        var results = registry.search(
+                municipality.isBlank() ? null : municipality,
+                maxPrice,
+                minBedrooms
+        );
+
+        if (results.isEmpty()) {
+            logger.info("No results found.");
+            return;
+        }
+
+        logger.info("=== Matching Residences ===");
+        for (Residence r : results) {
+            logger.info(r.basicInfo());
+        }
     }
     
 }
