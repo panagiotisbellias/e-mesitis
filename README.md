@@ -57,6 +57,7 @@ INFO: === e-Mesitis ===
 1. Register a new residence
 2. View available residences
 3. Search residence by criteria
+4. Update residence information
 0. Exit
 Choose option:
 ```
@@ -75,7 +76,7 @@ ant clean
 
 ## 🧭 Next Steps
 
-- UC4 – Update Residence Information
+- UC5 – Delete Residence
 - Add data persistence (save/load from file)
 - Introduce Swing or JavaFX interface
 - Add validation and exception handling

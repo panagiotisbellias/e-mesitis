@@ -46,7 +46,7 @@ public class DetachedHouse extends Residence {
         this.plotArea = plotArea;
     }
 
-    public boolean isFireplace() {
+    public boolean hasFireplace() {
         return hasFireplace;
     }
 

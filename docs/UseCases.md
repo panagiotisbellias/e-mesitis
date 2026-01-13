@@ -43,7 +43,7 @@ It provides:
 | UC1  | Register a New Residence                | ✅ Implemented         | Core CLI logic and logger added; residence creation and registration verified via console. |
 | UC2  | View Available Residences               | ✅ Implemented         | Display layer not yet integrated                                                           |
 | UC3  | Search Residence by Criteria            | ✅ Implemented         | To be implemented after collection logic                                                   |
-| UC4  | Update Residence Information            | 🔜 *Planned*          | Requires editable list structure                                                           |
+| UC4  | Update Residence Information            | ✅ Implemented          | Requires editable list structure                                                           |
 | UC5  | Delete Residence                        | 🔜 *Planned*          | Depends on list management UI                                                              |
 | UC6  | Calculate Average Rent per Municipality | 🔜 *Planned*          | Logic to be added in service layer                                                         |
 | UC7  | Display Detailed Residence Info         | 🔜 *Planned*          | To be added once viewing logic is complete                                                 |
@@ -120,7 +120,7 @@ Tenant → (View / Search / View Details)
 ### **UC4 – Update Residence Information**
 **Primary Actor:** Agent / Landlord  
 **Goal:** Modify existing property details.  
-**Implementation Status:** 🔜 *Planned*  
+**Implementation Status:** ✅ Implemented
 **Progress Notes:** Requires list index mapping or ID field per residence.  
 **Main Flow:**
 1. User selects a residence to update.

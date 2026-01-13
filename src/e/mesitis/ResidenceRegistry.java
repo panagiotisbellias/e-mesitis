@@ -13,7 +13,7 @@ public class ResidenceRegistry {
     // === UC1 ===
     public void addResidence(Residence residence) {
         residences.add(residence);
-        System.out.println("Residence successfully registered: " + residence);
+        logger.info("Residence added successfully.");
     }
 
     // === UC2 ===
@@ -67,6 +67,26 @@ public class ResidenceRegistry {
         }
 
         return results;
+    }
+
+    // === UC4 ===
+    public List<Residence> getAllResidences() {
+        return residences;
+    }
+
+    public Residence getResidence(int index) {
+        if (index < 0 || index >= residences.size()) return null;
+        return residences.get(index);
+    }
+
+    public void listResidencesWithIndex() {
+        if (residences.isEmpty()) {
+            logger.info("No residences available.");
+            return;
+        }
+        for (int i = 0; i < residences.size(); i++) {
+            logger.info(String.format("[%d] %s", i, residences.get(i).basicInfo()));
+        }
     }
 
 }
