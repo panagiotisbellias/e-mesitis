@@ -1,12 +1,14 @@
 # 🔒 Security Policy
 
 ## 1. Overview
-The **E Mesitis** project is committed to ensuring a secure environment for all contributors and users.  
-This document defines the initial security considerations and reporting procedures for internal use.
+
+The **E Mesitis** project is committed to maintaining a secure development and usage environment.
+This document defines security expectations, reporting procedures, and secret-handling rules.
 
 ---
 
 ## 2. Supported Versions
+
 Security updates apply only to active branches:
 
 | Branch                | Status          |
@@ -18,72 +20,84 @@ Security updates apply only to active branches:
 ---
 
 ## 3. Reporting a Vulnerability
+
 If you identify a potential security issue, **do not create a public issue**.
 
 Instead, report it privately to:
 
-📧 **belliaspan@gmail.com**
+📧 **[belliaspan@gmail.com](mailto:belliaspan@gmail.com)**
 
-Include when possible:
-- Clear description of the vulnerability  
-- Steps to reproduce  
-- Potential impact or affected modules  
-- Relevant logs or screenshots (if safe to share)
+Please include when possible:
+
+* Clear description of the vulnerability
+* Steps to reproduce
+* Potential impact or affected modules
+* Relevant logs or screenshots (if safe to share)
 
 We aim to acknowledge reports within **2 business days** and provide mitigation within **10 business days**.
 
 ---
 
-## 4. Security Best Practices for Contributors
+## 4. Credential & Secret Handling
 
-### Avoid exposing sensitive data
-- Never commit `.env` files, keys, tokens, or credentials  
-- Do not log sensitive personal or system data  
-- Use secure storage mechanisms for secrets (Vault, CI/CD variables)
+* **No secrets are stored in the repository**
+* Credentials must never be hardcoded or committed
+* Secrets must be injected via:
 
-### Maintain dependency security
-- Run dependency checks regularly:  
-  - `mvn dependency-check`  
-- Avoid introducing unverified or unmaintained libraries
+  * GitHub Actions Secrets
+  * Environment variables
+* If a secret is exposed:
 
-### Follow secure coding practices
-- Validate all input data  
-- Apply least-privilege principles for permissions  
-- Avoid hardcoding configuration values
+  1. Revoke it immediately
+  2. Rotate the credential
+  3. Remove it from the repository
+  4. Clean repository history if required
 
 ---
 
-## 5. Handling Sensitive Data
-- Mask sensitive information in logs  
-- Use encryption for data at rest and in transit  
-- Do not expose internal URLs, system paths, or infrastructure details in public artifacts  
-- Follow GDPR and internal data privacy policies when handling personal data  
+## 5. Dependency & Supply Chain Security
+
+* Dependencies should be kept up to date
+* Automated dependency scanning is enabled via CI
+* Avoid introducing unmaintained or unverified libraries
 
 ---
 
-## 6. CI/CD & Deployment Security
-- Store all credentials in the CI secret manager  
-- Rotate keys periodically and revoke unused credentials  
-- Ensure pipelines do not echo sensitive variables  
-- Review deployment configurations for accidental exposures  
+## 6. Secure Coding Practices
+
+Contributors are expected to:
+
+* Validate all external input
+* Apply least-privilege principles
+* Avoid hardcoded configuration values
+* Prevent sensitive data from appearing in logs
 
 ---
 
-## 7. History Cleanup & Secret Removal
-If secrets were accidentally committed:
-1. Remove them from the working tree  
-2. Clean the repository history (`git filter-repo`)  
-3. Rotate affected credentials immediately  
-4. Inform the team to re-clone the repository  
+## 7. CI/CD & Deployment Security
 
-(See internal *Appendix B – Secret Handling & Rotation* for full procedure.)
+* All credentials must be stored in CI secret managers
+* Secrets must never be echoed in pipeline logs
+* Rotate credentials periodically
+* Review workflows for accidental data exposure
 
 ---
 
-## 8. Updates
-This document will evolve as additional security procedures are formalized.  
-Contributors are expected to read the updated version when notified.
+## 8. Repository History & Incident Response
+
+If secrets are accidentally committed:
+
+1. Remove them from the working tree
+2. Clean the repository history (e.g. `git filter-repo`)
+3. Rotate affected credentials immediately
+4. Inform contributors to re-clone the repository
 
 ---
 
-_Last updated: November 2025_
+## 9. Updates
+
+This document evolves as security practices mature. Contributors are expected to stay informed of updates.
+
+---
+
+*Last updated: February 2026*
