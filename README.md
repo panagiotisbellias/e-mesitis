@@ -58,6 +58,7 @@ INFO: === e-Mesitis ===
 2. View available residences
 3. Search residence by criteria
 4. Update residence information
+5. Delete residence
 0. Exit
 Choose option:
 ```
@@ -76,7 +77,7 @@ ant clean
 
 ## 🧭 Next Steps
 
-- UC5 – Delete Residence
+- UC6 – Calculate Average Rent per Municipality
 - Add data persistence (save/load from file)
 - Introduce Swing or JavaFX interface
 - Add validation and exception handling
@@ -84,4 +85,4 @@ ant clean
 
 ---
 
-© 2025 Panagiotis Bellias
+© 2026 Panagiotis Bellias

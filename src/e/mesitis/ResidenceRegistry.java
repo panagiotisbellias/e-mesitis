@@ -89,4 +89,16 @@ public class ResidenceRegistry {
         }
     }
 
+    // === UC5 – Delete Residence ===
+    public boolean deleteResidence(int index) {
+        if (index < 0 || index >= residences.size()) {
+            logger.warning("Delete failed: invalid residence index " + index);
+            return false;
+        }
+
+        Residence removed = residences.remove(index);
+        logger.info("Residence deleted successfully: " + removed.basicInfo());
+        return true;
+    }
+
 }

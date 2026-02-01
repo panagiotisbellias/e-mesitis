@@ -27,6 +27,7 @@ public class EMesitis {
                 2. View available residences
                 3. Search residence by criteria
                 4. Update residence information
+                5. Delete residence
                 0. Exit
                 Choose option:
                 """);
@@ -39,6 +40,31 @@ public class EMesitis {
                 case 2 -> registry.listResidences();            // UC2
                 case 3 -> searchResidences(scanner, registry);  // UC3
                 case 4 -> updateResidence(scanner, registry);  // UC4
+                case 5 -> { // UC5
+                    registry.listResidences();
+
+                    if (registry.getAllResidences().isEmpty()) {
+                        break;
+                    }
+
+                    logger.info("Enter residence index to delete:");
+                    int index = scanner.nextInt();
+                    scanner.nextLine();
+
+                    logger.info("Confirm deletion? (y/n)");
+                    String confirm = scanner.nextLine();
+
+                    if (confirm.equalsIgnoreCase("y")) {
+                        boolean deleted = registry.deleteResidence(index);
+                        if (deleted) {
+                            logger.info("Residence deleted successfully.");
+                        } else {
+                            logger.warning("Invalid residence index.");
+                        }
+                    } else {
+                        logger.info("Deletion cancelled.");
+                    }
+                }
                 case 0 -> {
                     logger.info("Exiting application.");
                     running = false;
