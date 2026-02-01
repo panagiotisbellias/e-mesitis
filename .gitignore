@@ -1,3 +1,19 @@
+# Build artifacts
 build/
 dist/
-e-mesitis.iml
+
+# IDE files
+/e-mesitis.iml
+.idea/
+*.iml
+
+# Environment & secrets
+.env
+*.key
+*.pem
+*.p12
+*.secret
+
+# OS files
+.DS_Store
+Thumbs.db
