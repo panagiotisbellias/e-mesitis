@@ -1,7 +1,8 @@
 # e-mesitis
 
 **Version:** V0.1.0  
-**Status:** Initial setup — basic Ant build verified, no implemented logic yet.
+**Status:** Internal pre-release (v0.1.0) — core CLI use cases (UC1–UC7) implemented.  
+In-memory data only; persistence and stabilization planned next.
 
 ---
 
