@@ -1,6 +1,6 @@
 # e-mesitis
 
-**Version:** V0.0  
+**Version:** V0.1.0  
 **Status:** Initial setup — basic Ant build verified, no implemented logic yet.
 
 ---
@@ -37,7 +37,7 @@ ant jar
 
 Output:
 ```
-dist/e-mesitis_V0.0.jar
+dist/e-mesitis_V0.1.0.jar
 ```
 
 ---
@@ -47,7 +47,7 @@ dist/e-mesitis_V0.0.jar
 Even though the app does nothing yet, you can run it to confirm the setup works:
 
 ```bash
-java -cp dist/e-mesitis_V0.0.jar e.mesitis.EMesitis
+java -cp dist/e-mesitis_V0.1.0.jar e.mesitis.EMesitis
 ```
 
 Expected result:
