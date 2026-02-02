@@ -1,7 +1,9 @@
 package e.mesitis;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 public class ResidenceRegistry {
@@ -99,6 +101,59 @@ public class ResidenceRegistry {
         Residence removed = residences.remove(index);
         logger.info("Residence deleted successfully: " + removed.basicInfo());
         return true;
+    }
+
+    // === UC6 – Calculate Average Rent per Municipality ===
+    public Map<String, Double> calculateAverageRentPerMunicipality() {
+
+        Map<String, Double> totalRentPerMunicipality = new HashMap<>();
+        Map<String, Integer> countPerMunicipality = new HashMap<>();
+
+        for (Residence r : residences) {
+            String municipality = r.municipality;
+
+            totalRentPerMunicipality.put(
+                    municipality,
+                    totalRentPerMunicipality.getOrDefault(municipality, 0.0) + r.rentalPrice
+            );
+
+            countPerMunicipality.put(
+                    municipality,
+                    countPerMunicipality.getOrDefault(municipality, 0) + 1
+            );
+        }
+
+        Map<String, Double> averages = new HashMap<>();
+
+        for (String municipality : totalRentPerMunicipality.keySet()) {
+            double total = totalRentPerMunicipality.get(municipality);
+            int count = countPerMunicipality.get(municipality);
+            averages.put(municipality, total / count);
+        }
+
+        return averages;
+    }
+
+    public void displayAverageRentPerMunicipality() {
+
+        if (residences.isEmpty()) {
+            logger.info("No residences available for analysis.");
+            return;
+        }
+
+        Map<String, Double> averages = calculateAverageRentPerMunicipality();
+
+        logger.info("=== Average Rent per Municipality ===");
+        logger.info(String.format("%-20s | %-10s", "Municipality", "Avg Rent (€)"));
+        logger.info("-------------------------------------------");
+
+        for (Map.Entry<String, Double> entry : averages.entrySet()) {
+            logger.info(String.format(
+                    "%-20s | %.2f",
+                    entry.getKey(),
+                    entry.getValue()
+            ));
+        }
     }
 
 }

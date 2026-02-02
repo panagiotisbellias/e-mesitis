@@ -28,6 +28,7 @@ public class EMesitis {
                 3. Search residence by criteria
                 4. Update residence information
                 5. Delete residence
+                6. Calculate average rent per municipality
                 0. Exit
                 Choose option:
                 """);
@@ -65,6 +66,7 @@ public class EMesitis {
                         logger.info("Deletion cancelled.");
                     }
                 }
+                case 6 -> registry.displayAverageRentPerMunicipality(); // UC6
                 case 0 -> {
                     logger.info("Exiting application.");
                     running = false;

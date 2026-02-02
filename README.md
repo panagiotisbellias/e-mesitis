@@ -59,6 +59,7 @@ INFO: === e-Mesitis ===
 3. Search residence by criteria
 4. Update residence information
 5. Delete residence
+6. Calculate average rent per municipality
 0. Exit
 Choose option:
 ```
@@ -77,7 +78,7 @@ ant clean
 
 ## 🧭 Next Steps
 
-- UC6 – Calculate Average Rent per Municipality
+- UC7 – Display Detailed Residence Info
 - Add data persistence (save/load from file)
 - Introduce Swing or JavaFX interface
 - Add validation and exception handling
