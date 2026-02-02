@@ -85,5 +85,7 @@ public abstract class Residence {
                 rentalPrice
         );
     }
+
+    public abstract String detailedInfo();
     
 }

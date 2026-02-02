@@ -156,4 +156,17 @@ public class ResidenceRegistry {
         }
     }
 
+    // === UC7 – Display Detailed Residence Info ===
+    public void showResidenceDetails(int index) {
+
+        Residence r = getResidence(index);
+
+        if (r == null) {
+            logger.warning("Invalid residence index.");
+            return;
+        }
+
+        logger.info(r.detailedInfo());
+    }
+
 }

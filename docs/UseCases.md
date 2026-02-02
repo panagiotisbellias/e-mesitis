@@ -3,7 +3,7 @@
 **Project:** E Mesitis (Real Estate Rental Management System)  
 **Author:** Panagiotis Bellias  
 **Version:** 1.1  
-**Date:** 2025-11-02  
+**Date:** 2026-02-02  
 **Repository:** [github.com/panagiotisbellias/e-mesitis](https://github.com/panagiotisbellias/e-mesitis)
 
 ---
@@ -46,7 +46,7 @@ It provides:
 | UC4  | Update Residence Information            | ✅ *Implemented*       | Requires editable list structure                                                           |
 | UC5  | Delete Residence                        | ✅ *Implemented*       | Depends on list management UI                                                              |
 | UC6  | Calculate Average Rent per Municipality | ✅ *Implemented*       | Logic to be added in service layer                                                         |
-| UC7  | Display Detailed Residence Info         | 🔜 *Planned*          | To be added once viewing logic is complete                                                 |
+| UC7  | Display Detailed Residence Info         | ✅ *Implemented*       | To be added once viewing logic is complete                                                 |
 | UC8  | Generate Rental Report                  | ❌ *Not Started*       | Future extension                                                                           |
 | UC9  | Recommend Residences                    | ❌ *Not Started*       | Future AI/logic module                                                                     |
 | UC10 | Save/Load Data                          | ❌ *Not Started*       | Will require persistence mechanism                                                         |
@@ -161,7 +161,7 @@ Tenant → (View / Search / View Details)
 ### **UC7 – Display Detailed Residence Info**
 **Primary Actor:** Tenant  
 **Goal:** View full property details.  
-**Implementation Status:** 🔜 *Planned*  
+**Implementation Status:** ✅ *Implemented*
 **Progress Notes:** To be tied to “View Available Residences” feature.  
 **Main Flow:**
 1. User selects a property from the list.

@@ -29,6 +29,7 @@ public class EMesitis {
                 4. Update residence information
                 5. Delete residence
                 6. Calculate average rent per municipality
+                7. View residence details
                 0. Exit
                 Choose option:
                 """);
@@ -70,6 +71,19 @@ public class EMesitis {
                 case 0 -> {
                     logger.info("Exiting application.");
                     running = false;
+                }
+                case 7 -> {
+                    if (registry.getAllResidences().isEmpty()) {
+                        logger.info("No residences available.");
+                        break;
+                    }
+
+                    registry.listResidencesWithIndex();
+                    logger.info("Enter residence index to view details:");
+                    int index = scanner.nextInt();
+                    scanner.nextLine();
+
+                    registry.showResidenceDetails(index);
                 }
                 default -> logger.warning("Invalid option.");
             }

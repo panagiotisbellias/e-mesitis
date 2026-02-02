@@ -60,6 +60,7 @@ INFO: === e-Mesitis ===
 4. Update residence information
 5. Delete residence
 6. Calculate average rent per municipality
+7. View residence details
 0. Exit
 Choose option:
 ```
@@ -78,11 +79,11 @@ ant clean
 
 ## 🧭 Next Steps
 
-- UC7 – Display Detailed Residence Info
 - Add data persistence (save/load from file)
 - Introduce Swing or JavaFX interface
 - Add validation and exception handling
 - Configure unit tests and continuous integration
+- UC8 - Generate Rental Report
 
 ---
 

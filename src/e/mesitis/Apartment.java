@@ -70,4 +70,30 @@ public class Apartment extends Residence {
                         hasWarehouse);
     }
 
+    @Override
+    public String detailedInfo() {
+        return """
+        === Apartment ===
+        Municipality: %s
+        Area: %.2f m²
+        Construction Year: %d
+        Bedrooms: %d
+        Bathrooms: %d
+        Rental Price: €%.2f
+        Floor: %s
+        Parking Spot: %s
+        Warehouse: %s
+        """.formatted(
+                municipality,
+                area,
+                constructionYear,
+                bedrooms,
+                bathrooms,
+                rentalPrice,
+                floor,
+                hasParkingSpot() ? "Yes" : "No",
+                hasWarehouse() ? "Yes" : "No"
+        );
+    }
+
 }

@@ -70,4 +70,30 @@ public class DetachedHouse extends Residence {
                         hasFireplace);
     }
 
+    @Override
+    public String detailedInfo() {
+        return """
+        === Detached House ===
+        Municipality: %s
+        Area: %.2f m²
+        Construction Year: %d
+        Bedrooms: %d
+        Bathrooms: %d
+        Rental Price: €%.2f
+        Floors: %d
+        Plot Area: %.2f m²
+        Fireplace: %s
+        """.formatted(
+                municipality,
+                area,
+                constructionYear,
+                bedrooms,
+                bathrooms,
+                rentalPrice,
+                floors,
+                plotArea,
+                hasFireplace() ? "Yes" : "No"
+        );
+    }
+
 }
