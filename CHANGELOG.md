@@ -7,26 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
-## [Unreleased]
-- Project initialization
-- Added project structure and configuration files
-- Implemented core modules:
-    - Module A (describe briefly)
-    - Module B (describe briefly)
-- Added README.md
-- Added initial documentation and ROADMAP.md placeholders
-- Setup semantic versioning
-- Configured basic build/test workflow
-
----
-
 ## [1.0.0] - 2026-02-10
 ### Added
-- Initial release with core functionality
-- README.md and project documentation
-- Basic modules implemented
-- Build and test configuration files
+- Initial project setup
+- Core modules implemented
+- README.md, documentation, ROADMAP.md
 - Semantic versioning setup
+- Initial LICENSE and NOTICE files
+- Basic build/test workflow
 
 ---
 
