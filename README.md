@@ -2,9 +2,21 @@
 
 ![CI](https://github.com/panagiotisbellias/e-mesitis/actions/workflows/ant-build.yml/badge.svg)
 
-**Version:** V0.1.0  
-**Status:** Internal pre-release (v0.1.0) — core CLI use cases (UC1–UC7) implemented.  
-In-memory data only; persistence and stabilization planned next.
+**Version:** V1.0.0  
+**Status:** First stable public release with enough documentation for external contributors.
+
+Highlights:
+- Core CLI use cases (UC1–UC7) implemented
+- In-memory data only (persistence and stabilization planned for future releases)
+- Initial project documentation: README.md, CHANGELOG.md, ADR log, ROADMAP.md
+- License and NOTICE files included for open-source compliance
+- Basic build/test workflow using Ant
+- Semantic versioning enabled
+
+Notes for Contributors:
+- [Unreleased] section in CHANGELOG.md should be used for ongoing changes
+- ADRs log documents key architectural decisions
+- Please follow coding and testing conventions when submitting PRs
 
 ---
 
@@ -40,7 +52,7 @@ ant jar
 
 Output:
 ```
-dist/e-mesitis_V0.1.0.jar
+dist/e-mesitis_V1.0.0.jar
 ```
 
 ---
@@ -50,7 +62,7 @@ dist/e-mesitis_V0.1.0.jar
 Even though the app does nothing yet, you can run it to confirm the setup works:
 
 ```bash
-java -cp dist/e-mesitis_V0.1.0.jar e.mesitis.EMesitis
+java -cp dist/e-mesitis_V1.0.0.jar e.mesitis.EMesitis
 ```
 
 Expected result:

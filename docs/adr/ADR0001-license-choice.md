@@ -4,7 +4,7 @@
 Accepted
 
 ## Context
-We are preparing the initial open-source / internal pre-release of the project (v0.1.0).  
+We are preparing the initial open-source / internal pre-release of the project (v1.0.0).  
 A license must be included to define legal usage, distribution, and contribution terms.
 
 ## Decision
