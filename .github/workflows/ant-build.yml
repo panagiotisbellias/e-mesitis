@@ -1,0 +1,24 @@
+name: Ant Build
+
+on:
+  push:
+    branches: [ "master", "main", "development", "task/ci-setup-introduce-git-hub-actions-for-ant-build-adr-0002-6f2rgj48wxFJ38c6" ]
+  pull_request:
+    branches: [ "master", "main", "development", "task/ci-setup-introduce-git-hub-actions-for-ant-build-adr-0002-6f2rgj48wxFJ38c6" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Build with Ant
+        run: ant clean jar

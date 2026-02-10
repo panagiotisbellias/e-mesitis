@@ -1,5 +1,7 @@
 # e-mesitis
 
+![CI](https://github.com/panagiotisbellias/e-mesitis/actions/workflows/ant-build.yml/badge.svg)
+
 **Version:** V0.1.0  
 **Status:** Internal pre-release (v0.1.0) — core CLI use cases (UC1–UC7) implemented.  
 In-memory data only; persistence and stabilization planned next.
@@ -75,6 +77,21 @@ To remove build outputs:
 ```bash
 ant clean
 ```
+
+---
+
+## 🤖 Continuous Integration
+
+The project uses **GitHub Actions** to verify the build on every push and pull request.
+
+Current CI pipeline:
+- Runs on Ubuntu
+- Sets up JDK 17
+- Executes `ant clean jar`
+
+This ensures the project always builds successfully using Apache Ant.
+
+(ADR0002 – CI setup with GitHub Actions)
 
 ---
 
