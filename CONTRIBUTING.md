@@ -24,7 +24,7 @@ These guidelines help internal contributors collaborate consistently and effecti
    - Reference issues when applicable.
 
 3. **Open a Merge Request (MR)**
-   - Target `development` unless instructed otherwise.  
+   - Target `development` or the related `release/x` unless instructed otherwise.  
    - Provide a clear description and testing notes.  
    - Request review from the relevant maintainer.
 
@@ -83,4 +83,65 @@ Use:
 
 ---
 
-_Last updated: November 2025_
+## 🔀 7. Merge Strategy
+
+The project uses **Squash and Merge** when integrating changes into protected branches.
+
+Why squash merge:
+
+* Keeps commit history clean and readable
+* One logical change results in one commit on the target branch
+* Simplifies reverts if needed
+
+Merge requirements:
+
+* At least **one approval** from a reviewer
+* All required CI checks must pass
+* Branch must be up to date with the target branch
+
+---
+
+## 🔒 8. Branch Protection Rules
+
+For protected branches (e.g. `main`, `development`, `release/v2.0.0`), the following rules are recommended:
+
+* Require pull request reviews before merging
+* Require status checks to pass before merging
+* Require branches to be up to date before merging
+* Disallow direct pushes to protected branches
+
+Optional but recommended:
+
+* Dismiss stale approvals when new commits are pushed
+
+---
+
+## 📋 9. Pull Request Template
+
+All contributors should follow the Pull Request template located at:
+
+```
+.github/pull_request_template.md
+```
+
+The template helps reviewers by ensuring:
+
+* Clear summary of changes
+* Proper issue linkage
+* Documented testing steps
+* Basic quality checks
+
+---
+
+## 🧪 10. Continuous Integration
+
+All pull requests are automatically validated by CI workflows (build, tests, security checks).
+
+A pull request **cannot be merged** unless:
+
+* CI pipelines pass successfully
+* No blocking issues are reported by automated checks
+
+---
+
+*Last updated: January 2026*
