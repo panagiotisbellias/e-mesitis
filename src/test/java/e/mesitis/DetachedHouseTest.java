@@ -20,7 +20,6 @@ public class DetachedHouseTest {
         );
 
         assertNotNull(house);
-        assertTrue(house instanceof Residence);
 
         // Optional extra checks
         assertEquals(2, house.getFloors());

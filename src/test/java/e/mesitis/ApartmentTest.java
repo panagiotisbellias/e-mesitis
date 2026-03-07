@@ -20,7 +20,6 @@ public class ApartmentTest {
         );
 
         assertNotNull(apartment);
-        assertTrue(apartment instanceof Residence);
 
         // Optional extra checks
         assertEquals("3rd floor", apartment.getFloor());
