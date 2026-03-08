@@ -70,4 +70,64 @@
     nbproject/build-impl.xml file. 
 
     -->
+
+    <target name="checkstyle">
+        <java classname="com.puppycrawl.tools.checkstyle.Main"
+              fork="true"
+              failonerror="true">
+            <classpath>
+                <fileset dir="lib">
+                    <include name="checkstyle*.jar"/>
+                </fileset>
+            </classpath>
+            <arg value="-c"/>
+            <arg value="config/checkstyle.xml"/>
+            <arg value="src"/>
+        </java>
+    </target>
+
+    <target name="pmd">
+        <java classname="net.sourceforge.pmd.cli.PmdCli"
+              fork="true"
+              failonerror="true">
+            <classpath>
+                <fileset dir="lib">
+                    <include name="*.jar"/>
+                </fileset>
+            </classpath>
+
+            <arg value="check"/>
+            <arg value="-d"/>
+            <arg value="src"/>
+            <arg value="-R"/>
+            <arg value="config/pmd.xml"/>
+            <arg value="-f"/>
+            <arg value="text"/>
+        </java>
+    </target>
+
+    <target name="spotbugs">
+        <java classname="edu.umd.cs.findbugs.FindBugs2"
+              fork="true"
+              failonerror="true">
+            <classpath>
+                <fileset dir="lib">
+                    <include name="spotbugs*.jar"/>
+                </fileset>
+            </classpath>
+
+            <arg value="-effort:max"/>
+            <arg value="-low"/>
+            <arg value="-progress"/>
+            <arg value="build/classes"/>
+        </java>
+    </target>
+
+    <target name="quality" depends="checkstyle,pmd,spotbugs">
+        <echo message="Code quality checks completed"/>
+    </target>
+
+    <target name="-pre-compile">
+        <antcall target="quality"/>
+    </target>
 </project>
