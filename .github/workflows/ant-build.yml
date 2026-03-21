@@ -2,7 +2,7 @@ name: Ant Build
 
 on:
   push:
-    branches: [ "master", "main", "development" ]
+    branches: [ "master", "main", "development", "task/ci-cd-enhancements-run-tests-on-prs-enforce-code-quality-checks-6f2rh4wVrghwc3p6" ]
   pull_request:
     branches: [ "master", "main", "development" ]
 
