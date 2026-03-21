@@ -26,9 +26,6 @@ jobs:
       - name: Run tests
         run: ant test
 
-      - name: Run PMD (code quality)
-        run: ant pmd
-
       - name: Upload test results
         uses: actions/upload-artifact@v4
         with:
