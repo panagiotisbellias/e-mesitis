@@ -10,7 +10,7 @@ public class H2Test {
         Connection conn = DriverManager.getConnection(
                 "jdbc:h2:mem:testdb",
                 "sa",
-                ""
+                "sa"
         );
 
         System.out.println("Connected to H2!");

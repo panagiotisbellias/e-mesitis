@@ -19,36 +19,38 @@ public class ResidenceDAO {
     public void insertResidence(Residence r) throws SQLException {
         String sql = "INSERT INTO residences (municipality, price, bedrooms) VALUES (?, ?, ?)";
 
-        PreparedStatement stmt = connection.prepareStatement(sql);
-        stmt.setString(1, r.municipality);
-        stmt.setDouble(2, r.rentalPrice);
-        stmt.setInt(3, r.bedrooms);
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, r.municipality);
+            stmt.setDouble(2, r.rentalPrice);
+            stmt.setInt(3, r.bedrooms);
 
-        stmt.executeUpdate();
+            stmt.executeUpdate();
+        }
     }
 
     public List<Residence> getAllResidences() throws SQLException {
 
         List<Residence> list = new ArrayList<>();
 
-        Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM residences");
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM residences")) {
 
-        while (rs.next()) {
+            while (rs.next()) {
 
-            Residence r = new Apartment(
-                    "test",
-                    true,
-                    true,
-                    rs.getString("municipality"),
-                    70,
-                    2,
-                    rs.getInt("bedrooms"),
-                    1,
-                    rs.getDouble("price")
-            );
+                Residence r = new Apartment(
+                        "test",
+                        true,
+                        true,
+                        rs.getString("municipality"),
+                        70,
+                        2,
+                        rs.getInt("bedrooms"),
+                        1,
+                        rs.getDouble("price")
+                );
 
-            list.add(r);
+                list.add(r);
+            }
         }
 
         return list;

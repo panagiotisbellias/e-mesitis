@@ -17,7 +17,7 @@ public class ResidenceDAOTest {
         Connection conn = DriverManager.getConnection(
                 "jdbc:h2:mem:testdb",
                 "sa",
-                ""
+                "sa"
         );
 
         Statement stmt = conn.createStatement();

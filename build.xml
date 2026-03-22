@@ -75,13 +75,13 @@
         <java classname="com.puppycrawl.tools.checkstyle.Main"
               fork="true"
               failonerror="true">
+
             <classpath>
-                <fileset dir="lib">
-                    <include name="checkstyle*.jar"/>
-                </fileset>
+                <pathelement location="tools/checkstyle/checkstyle-13.3.0-all.jar"/>
             </classpath>
+
             <arg value="-c"/>
-            <arg value="config/checkstyle.xml"/>
+            <arg value="checkstyle.xml"/>
             <arg value="src"/>
         </java>
     </target>
@@ -90,8 +90,9 @@
         <java classname="net.sourceforge.pmd.cli.PmdCli"
               fork="true"
               failonerror="true">
+
             <classpath>
-                <fileset dir="lib">
+                <fileset dir="tools/pmd/pmd-bin-7.22.0/lib">
                     <include name="*.jar"/>
                 </fileset>
             </classpath>
@@ -100,7 +101,7 @@
             <arg value="-d"/>
             <arg value="src"/>
             <arg value="-R"/>
-            <arg value="config/pmd.xml"/>
+            <arg value="category/java/bestpractices.xml"/>
             <arg value="-f"/>
             <arg value="text"/>
         </java>
@@ -110,9 +111,10 @@
         <java classname="edu.umd.cs.findbugs.FindBugs2"
               fork="true"
               failonerror="true">
+
             <classpath>
-                <fileset dir="lib">
-                    <include name="spotbugs*.jar"/>
+                <fileset dir="tools/spotbugs/spotbugs-4.9.8/lib">
+                    <include name="*.jar"/>
                 </fileset>
             </classpath>
 

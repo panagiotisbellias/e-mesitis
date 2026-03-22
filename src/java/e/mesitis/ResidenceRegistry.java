@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ResidenceRegistry {
@@ -15,27 +16,35 @@ public class ResidenceRegistry {
     // === UC1 ===
     public void addResidence(Residence residence) {
         residences.add(residence);
-        logger.info("Residence added successfully.");
+        if (logger.isLoggable(java.util.logging.Level.INFO)) {
+            logger.info("Residence added successfully.");
+        }
     }
 
     // === UC2 ===
     public void listResidences() {
-        logger.info("=== Available Residences ===");
+        if (logger.isLoggable(java.util.logging.Level.INFO)) {
+            logger.info("=== Available Residences ===");
+        }
 
         if (residences.isEmpty()) {
-            logger.info("No residences available.");
+            if (logger.isLoggable(java.util.logging.Level.INFO)) {
+                logger.info("No residences available.");
+            }
             return;
         }
 
-        logger.info(String.format(
-                "%-15s | %-12s | %-8s | %-6s | %-6s | %-10s | Details",
-                "Type", "Municipality", "Area", "Beds", "Baths", "Rent"
-        ));
+        if (logger.isLoggable(java.util.logging.Level.INFO)) {
+            logger.info(String.format(
+                    "%-15s | %-12s | %-8s | %-6s | %-6s | %-10s | Details",
+                    "Type", "Municipality", "Area", "Beds", "Baths", "Rent"
+            ));
 
-        logger.info("--------------------------------------------------------------------------------");
+            logger.info("--------------------------------------------------------------------------------");
 
-        for (Residence r : residences) {
-            logger.info(r.basicInfo());
+            for (Residence r : residences) {
+                logger.info(r.basicInfo());
+            }
         }
     }
 
@@ -73,7 +82,7 @@ public class ResidenceRegistry {
 
     // === UC4 ===
     public List<Residence> getAllResidences() {
-        return residences;
+        return new ArrayList<>(residences);
     }
 
     public Residence getResidence(int index) {
@@ -83,23 +92,31 @@ public class ResidenceRegistry {
 
     public void listResidencesWithIndex() {
         if (residences.isEmpty()) {
-            logger.info("No residences available.");
+            if (logger.isLoggable(java.util.logging.Level.INFO)) {
+                logger.info("No residences available.");
+            }
             return;
         }
-        for (int i = 0; i < residences.size(); i++) {
-            logger.info(String.format("[%d] %s", i, residences.get(i).basicInfo()));
+        if (logger.isLoggable(java.util.logging.Level.INFO)) {
+            for (int i = 0; i < residences.size(); i++) {
+                logger.info(String.format("[%d] %s", i, residences.get(i).basicInfo()));
+            }
         }
     }
 
     // === UC5 – Delete Residence ===
     public boolean deleteResidence(int index) {
         if (index < 0 || index >= residences.size()) {
-            logger.warning("Delete failed: invalid residence index " + index);
+            if (logger.isLoggable(Level.WARNING)) {
+                logger.warning("Delete failed: invalid residence index " + index);
+            }
             return false;
         }
 
-        Residence removed = residences.remove(index);
-        logger.info("Residence deleted successfully: " + removed.basicInfo());
+        if (logger.isLoggable(java.util.logging.Level.INFO)) {
+            Residence removed = residences.remove(index);
+            logger.info("Residence deleted successfully: " + removed.basicInfo());
+        }
         return true;
     }
 
@@ -137,22 +154,26 @@ public class ResidenceRegistry {
     public void displayAverageRentPerMunicipality() {
 
         if (residences.isEmpty()) {
-            logger.info("No residences available for analysis.");
+            if (logger.isLoggable(java.util.logging.Level.INFO)) {
+                logger.info("No residences available for analysis.");
+            }
             return;
         }
 
         Map<String, Double> averages = calculateAverageRentPerMunicipality();
 
-        logger.info("=== Average Rent per Municipality ===");
-        logger.info(String.format("%-20s | %-10s", "Municipality", "Avg Rent (€)"));
-        logger.info("-------------------------------------------");
+        if (logger.isLoggable(java.util.logging.Level.INFO)) {
+            logger.info("=== Average Rent per Municipality ===");
+            logger.info(String.format("%-20s | %-10s", "Municipality", "Avg Rent (€)"));
+            logger.info("-------------------------------------------");
 
-        for (Map.Entry<String, Double> entry : averages.entrySet()) {
-            logger.info(String.format(
-                    "%-20s | %.2f",
-                    entry.getKey(),
-                    entry.getValue()
-            ));
+            for (Map.Entry<String, Double> entry : averages.entrySet()) {
+                logger.info(String.format(
+                        "%-20s | %.2f",
+                        entry.getKey(),
+                        entry.getValue()
+                ));
+            }
         }
     }
 
@@ -162,11 +183,15 @@ public class ResidenceRegistry {
         Residence r = getResidence(index);
 
         if (r == null) {
-            logger.warning("Invalid residence index.");
+            if (logger.isLoggable(Level.WARNING)) {
+                logger.warning("Invalid residence index.");
+            }
             return;
         }
 
-        logger.info(r.detailedInfo());
+        if (logger.isLoggable(java.util.logging.Level.INFO)) {
+            logger.info(r.detailedInfo());
+        }
     }
 
 }
