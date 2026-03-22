@@ -2,8 +2,7 @@
 
 ![CI](https://github.com/panagiotisbellias/e-mesitis/actions/workflows/ant-build.yml/badge.svg)
 
-**Version:** V1.0.0  
-**Status:** First stable public release with enough documentation for external contributors.
+**Version:** V2.0.0  
 
 Highlights:
 - Core CLI use cases (UC1–UC7) implemented
@@ -52,7 +51,7 @@ ant jar
 
 Output:
 ```
-dist/e-mesitis_V1.0.0.jar
+dist/e-mesitis_V2.0.0.jar
 ```
 
 ---
@@ -62,7 +61,7 @@ dist/e-mesitis_V1.0.0.jar
 Even though the app does nothing yet, you can run it to confirm the setup works:
 
 ```bash
-java -cp dist/e-mesitis_V1.0.0.jar e.mesitis.EMesitis
+java -cp dist/e-mesitis_V2.0.0.jar e.mesitis.EMesitis
 ```
 
 Expected result:

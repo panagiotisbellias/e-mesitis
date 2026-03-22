@@ -2,9 +2,9 @@ name: Ant Build
 
 on:
   push:
-    branches: [ "master", "main", "development", "task/ci-setup-introduce-git-hub-actions-for-ant-build-adr-0002-6f2rgj48wxFJ38c6" ]
+    branches: [ "master", "main", "development", "task/ci-cd-enhancements-run-tests-on-prs-enforce-code-quality-checks-6f2rh4wVrghwc3p6" ]
   pull_request:
-    branches: [ "master", "main", "development", "task/ci-setup-introduce-git-hub-actions-for-ant-build-adr-0002-6f2rgj48wxFJ38c6" ]
+    branches: [ "master", "main", "development" ]
 
 jobs:
   build:
@@ -20,5 +20,14 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: Build with Ant
+      - name: Build project
         run: ant clean jar
+
+      - name: Run tests
+        run: ant test
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: build/test-results/
