@@ -108,6 +108,12 @@
     </target>
 
     <target name="spotbugs">
+        <condition property="classes.exist">
+            <available file="build/classes"/>
+        </condition>
+
+        <fail unless="classes.exist" message="No compiled classes for SpotBugs"/>
+
         <java classname="edu.umd.cs.findbugs.FindBugs2"
               fork="true"
               failonerror="true">
@@ -125,11 +131,15 @@
         </java>
     </target>
 
-    <target name="quality" depends="checkstyle,pmd,spotbugs">
-        <echo message="Code quality checks completed"/>
-    </target>
+    <target name="quality-source" depends="checkstyle,pmd"/>
+
+    <target name="quality-bytecode" depends="spotbugs"/>
 
     <target name="-pre-compile">
-        <antcall target="quality"/>
+        <antcall target="quality-source"/>
+    </target>
+
+    <target name="-post-compile">
+        <antcall target="quality-bytecode"/>
     </target>
 </project>
