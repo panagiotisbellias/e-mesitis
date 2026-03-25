@@ -27,7 +27,7 @@ jobs:
         run: ant test
 
       - name: Upload test results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: test-results
           path: build/test-results/
