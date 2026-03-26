@@ -1,11 +1,17 @@
 package e.mesitis;
 
+import org.junit.Test;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+import static org.junit.Assert.assertNotNull;
+
 public class H2Test {
 
-    public static void main(String[] args) throws Exception {
+    @Test
+    public void shouldConnectToH2() throws Exception {
+        Class.forName("org.h2.Driver"); // important for CI
 
         Connection conn = DriverManager.getConnection(
                 "jdbc:h2:mem:testdb",
@@ -13,6 +19,6 @@ public class H2Test {
                 "sa"
         );
 
-        System.out.println("Connected to H2!");
+        assertNotNull(conn);
     }
 }
