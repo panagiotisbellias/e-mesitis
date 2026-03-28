@@ -6,6 +6,7 @@ package e.mesitis;
  */
 public abstract class Residence {
 
+    private int id;
     protected String municipality;
     protected float area;
     protected int constructionYear;
@@ -22,6 +23,10 @@ public abstract class Residence {
             double rentalPrice
     ) {
         this.municipality = municipality;
+        if (area < 0) {
+            throw new IllegalArgumentException("Square meters cannot be negative");
+        }
+
         this.area = area;
         this.constructionYear = constructionYear;
         this.bedrooms = bedrooms;
@@ -32,6 +37,14 @@ public abstract class Residence {
     protected Residence() {}
 
     public abstract String getType();
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getMunicipality() {
         return municipality;

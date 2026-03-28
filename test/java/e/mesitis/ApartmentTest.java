@@ -27,4 +27,23 @@ public class ApartmentTest {
         assertFalse(apartment.hasWarehouse());
         assertEquals("Apartment", apartment.getType());
     }
+
+    @Test
+    public void shouldFormatDetailedInfoCorrectly() {
+        Apartment a = new Apartment(
+                "3rd floor",  // floor as String
+                true,         // hasParkingSpot
+                false,        // hasWarehouse
+                "Athens",     // municipality
+                80.0f,        // area
+                2010,         // constructionYear
+                2,            // bedrooms
+                1,            // bathrooms
+                90000.0       // rentalPrice
+        );
+        String info = a.detailedInfo();
+
+        assertTrue(info.contains("Floor"));
+        assertTrue(info.contains("Parking"));
+    }
 }

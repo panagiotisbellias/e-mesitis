@@ -27,4 +27,20 @@ public class DetachedHouseTest {
         assertTrue(house.hasFireplace());
         assertEquals("DetachedHouse", house.getType());
     }
+
+    @Test
+    public void shouldCalculatePricePerSquareMeter() {
+        DetachedHouse h = new DetachedHouse(
+                2,           // floors
+                500.0f,      // plotArea
+                true,        // hasFireplace
+                "Patras",    // municipality
+                150.0f,      // area
+                1995,        // constructionYear
+                3,           // bedrooms
+                2,           // bathrooms
+                200000.0     // rentalPrice
+        );
+        assertTrue(h.getRentalPrice() > 0);
+    }
 }

@@ -7,7 +7,7 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
-<project name="e-mesitis" default="default" basedir=".">
+<project name="e-mesitis" default="default" basedir="." xmlns:jacoco="antlib:org.jacoco.ant">
     <description>Builds, tests, and runs the project e-mesitis V2.0.0.</description>
     <import file="nbproject/build-impl.xml"/>
     <!--
@@ -141,5 +141,20 @@
 
     <target name="-post-compile">
         <antcall target="quality-bytecode"/>
+    </target>
+
+    <taskdef uri="antlib:org.jacoco.ant"
+             resource="org/jacoco/ant/antlib.xml">
+        <classpath>
+            <fileset dir="tools/jacoco/lib">
+                <include name="*.jar"/>
+            </fileset>
+        </classpath>
+    </taskdef>
+
+    <target name="coverage">
+        <jacoco:coverage>
+            <antcall target="test"/>
+        </jacoco:coverage>
     </target>
 </project>

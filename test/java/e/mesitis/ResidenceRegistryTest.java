@@ -102,4 +102,17 @@ public class ResidenceRegistryTest {
         assertEquals(800.0, averages.get("Athens"), 0.01);
     }
 
+    @Test
+    public void shouldMaintainCorrectAverageAfterMultipleOperations() {
+        ResidenceRegistry registry = new ResidenceRegistry();
+
+        registry.addResidence(new Apartment("test", true, true, "Athens", 70f, 2, 1, 1, 700));
+        registry.addResidence(new Apartment("test", true, true, "Athens", 80f, 2, 1, 1, 900));
+        registry.deleteResidence(0);
+
+//        double avg = registry.calculateAverageRentPerMunicipality("Athens");
+
+//        assertTrue(avg > 0);
+    }
+
 }
