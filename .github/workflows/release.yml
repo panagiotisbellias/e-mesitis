@@ -22,11 +22,8 @@ jobs:
           distribution: temurin
           java-version: 21
 
-      - name: Build & Test
-        run: ant clean test
-
-      - name: Build JAR
-        run: ant jar
+      - name: Build, Test, Package
+        run: ant clean test jar
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
