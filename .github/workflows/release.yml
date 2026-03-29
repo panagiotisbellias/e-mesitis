@@ -22,11 +22,8 @@ jobs:
           distribution: temurin
           java-version: 21
 
-      - name: Build & Test
-        run: ant clean test
-
-      - name: Build JAR
-        run: ant jar
+      - name: Build, Test, Package
+        run: ant clean test jar
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -38,6 +35,8 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: dist/*.jar
+          draft: true
+          generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
