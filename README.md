@@ -22,9 +22,68 @@ Notes for Contributors:
 ## 🧩 Overview
 
 This is the initial structure for the **e-mesitis** desktop Java application.  
-Currently, the application contains only the entry point class `e.mesitis.EMesitis` with no logic implemented.
+This project implements a desktop-based real estate management system with:
 
-The goal of this version is to validate the build and run pipeline using **Apache Ant**.
+- Residence management (apartments, detached houses)
+- Search and filtering
+- Average rent calculations
+- DAO layer with H2 database support
+- Unit and integration testing
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions!
+
+- Read: `CONTRIBUTING.md`
+- Pick an issue labeled `good first issue`
+- Submit a PR to `development`
+
+---
+
+## 🚀 Release Process
+
+Releases are automated via GitHub Actions:
+
+- Tag format: `vX.Y.Z`
+- Example:
+  ```bash
+  git tag v2.0.1
+  git push origin v2.0.1
+  ```
+
+This will:
+
+- Build the project
+- Run tests
+- Publish a GitHub Release with artifacts
+
+---
+
+📊 Code Quality
+
+The project includes:
+
+- Checkstyle
+- PMD
+- SpotBugs
+- CodeQL
+- Qodana (JetBrains)
+
+---
+
+🧪 Testing
+
+Run all tests:
+```bash
+ant clean test
+```
+
+Run with coverage:
+```bash
+ant coverage
+```
 
 ---
 

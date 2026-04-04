@@ -1,3 +1,6 @@
+> This project follows a simplified internal Code of Conduct.  
+> For public contributions, behavior should align with standard open-source practices.
+
 # 🧭 Code of Conduct (Internal)
 
 This **Code of Conduct** outlines expectations for all internal contributors working on **E Mesitis**.  

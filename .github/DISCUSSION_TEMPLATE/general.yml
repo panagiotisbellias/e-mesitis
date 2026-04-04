@@ -1,0 +1,6 @@
+title: General Discussion
+body:
+  - type: textarea
+    attributes:
+      label: Topic
+      description: What would you like to discuss?

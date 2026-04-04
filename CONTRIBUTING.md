@@ -30,6 +30,36 @@ These guidelines help internal contributors collaborate consistently and effecti
 
 ---
 
+## 🚀 Getting Started (for new contributors)
+
+1. Fork the repository
+2. Clone your fork:
+   ```bash
+   git clone https://github.com/<your-username>/e-mesitis.git
+   ```
+3. Create a branch from `development`
+4. Run the project locally:
+   ```bash
+   ant clean test
+   ```
+
+---
+
+## 🏷️ Issue & Labeling Guidelines
+
+We use labels to organize work:
+
+- `good first issue` – beginner-friendly tasks
+- `enhancement` – improvements
+- `bug` – defects
+- `documentation` – docs updates
+- `testing` – test-related work
+- `ci/cd` – pipeline or automation changes
+
+Always link your PR to an issue when possible.
+
+---
+
 ## 🧪 2. Code Quality Standards
 
 - Follow the existing layered architecture.  
@@ -141,6 +171,19 @@ A pull request **cannot be merged** unless:
 
 * CI pipelines pass successfully
 * No blocking issues are reported by automated checks
+
+---
+
+## 📊 Test Coverage
+
+- All new features must include tests
+- Integration tests are required for DB-related changes
+- Coverage is tracked via JaCoCo
+
+Run locally:
+```bash
+ant coverage
+```
 
 ---
 

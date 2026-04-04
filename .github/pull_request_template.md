@@ -46,3 +46,15 @@ Describe how you tested your changes (manual steps, commands run, etc.).
 - [ ] Existing functionality not broken
 - [ ] Tests updated or added (if applicable)
 - [ ] Documentation updated (if needed)
+
+## 🚀 Deployment Notes (if applicable)
+
+Describe any deployment or release impact.
+
+---
+
+## 📊 Coverage Impact
+
+- [ ] No coverage decrease
+- [ ] Coverage improved
+- [ ] Not applicable
