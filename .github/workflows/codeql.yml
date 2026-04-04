@@ -2,9 +2,9 @@ name: CodeQL
 
 on:
   push:
-    branches: [ "main", "development", "release/v2.0.0", "task/dependabot-sast-automated-dependency-updates-and-security-checks-6f2rh2P7Fgr7gpm6" ]
+    branches: [ "main", "development" ]
   pull_request:
-    branches: [ "main", "development", "release/v2.0.0", "task/dependabot-sast-automated-dependency-updates-and-security-checks-6f2rh2P7Fgr7gpm6" ]
+    branches: [ "main", "development" ]
   schedule:
     - cron: '0 3 * * 1' # Weekly scan
 

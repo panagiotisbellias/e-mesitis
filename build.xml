@@ -8,7 +8,7 @@
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
 <project name="e-mesitis" default="default" basedir="." xmlns:jacoco="antlib:org.jacoco.ant">
-    <description>Builds, tests, and runs the project e-mesitis V2.0.0.</description>
+    <description>Builds, tests, and runs the project e-mesitis V2.0.1.</description>
     <import file="nbproject/build-impl.xml"/>
     <!--
 
@@ -58,7 +58,7 @@
 
     An example of overriding the target for project execution could look like this:
 
-        <target name="run" depends="e-mesitis_V2.0.0-impl.jar">
+        <target name="run" depends="e-mesitis_V2.0.1-impl.jar">
             <exec dir="bin" executable="launcher.exe">
                 <arg file="${dist.jar}"/>
             </exec>

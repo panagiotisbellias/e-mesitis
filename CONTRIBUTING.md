@@ -133,7 +133,7 @@ Merge requirements:
 
 ## 🔒 8. Branch Protection Rules
 
-For protected branches (e.g. `main`, `development`, `release/v2.0.0`), the following rules are recommended:
+For protected branches (e.g. `main`, `development`), the following rules are recommended:
 
 * Require pull request reviews before merging
 * Require status checks to pass before merging
