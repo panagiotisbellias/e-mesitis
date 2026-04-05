@@ -129,6 +129,16 @@
             <arg value="-progress"/>
             <arg value="build/classes"/>
         </java>
+
+        <taskdef name="spotbugs"
+                 classname="edu.umd.cs.findbugs.anttask.FindBugsTask"
+                 classpath="lib/spotbugs-ant.jar"/>
+
+        <spotbugs home="lib/spotbugs"
+                  output="xml"
+                  outputFile="spotbugs-report.xml">
+            <class location="build/classes"/>
+        </spotbugs>
     </target>
 
     <target name="quality-source" depends="checkstyle,pmd"/>

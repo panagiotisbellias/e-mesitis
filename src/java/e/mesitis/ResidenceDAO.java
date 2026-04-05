@@ -17,13 +17,19 @@ public class ResidenceDAO {
     }
 
     public void insertResidence(Residence r) throws SQLException {
+        if (r.municipality == null || r.municipality.isBlank()) {
+            throw new IllegalArgumentException("Municipality cannot be empty");
+        }
+        if (r.rentalPrice < 0) {
+            throw new IllegalArgumentException("Price cannot be negative");
+        }
+
         String sql = "INSERT INTO residences (municipality, price, bedrooms) VALUES (?, ?, ?)";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, r.municipality);
             stmt.setDouble(2, r.rentalPrice);
             stmt.setInt(3, r.bedrooms);
-
             stmt.executeUpdate();
         }
     }
@@ -32,8 +38,9 @@ public class ResidenceDAO {
 
         List<Residence> list = new ArrayList<>();
 
-        try (Statement stmt = connection.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM residences")) {
+        String sql = "SELECT municipality, price, bedrooms FROM residences";
+        try (PreparedStatement stmt = connection.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
 
