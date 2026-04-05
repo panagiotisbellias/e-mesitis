@@ -132,9 +132,9 @@
 
         <taskdef name="spotbugs"
                  classname="edu.umd.cs.findbugs.anttask.FindBugsTask"
-                 classpath="lib/spotbugs-ant.jar"/>
+                 classpath="tools/spotbugs/spotbugs-4.9.8/lib/spotbugs-ant.jar"/>
 
-        <spotbugs home="lib/spotbugs"
+        <spotbugs home="tools/spotbugs/spotbugs-4.9.8/lib"
                   output="xml"
                   outputFile="spotbugs-report.xml">
             <class location="build/classes"/>

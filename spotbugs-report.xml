@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="4.9.8" sequence="0" timestamp="1775402041059" analysisTimestamp="1775402041077" release="">
+  <Project projectName="">
+    <Jar>C:\Users\pbell\Projects\Others\desktop-apps\e-mesitis\build\classes</Jar>
+  </Project>
+  <BugInstance type="VA_FORMAT_STRING_USES_NEWLINE" priority="2" rank="20" abbrev="FS" category="BAD_PRACTICE">
+    <Class classname="e.mesitis.Apartment">
+      <SourceLine classname="e.mesitis.Apartment" start="24" end="105" sourcefile="Apartment.java" sourcepath="e/mesitis/Apartment.java"/>
+    </Class>
+    <Method classname="e.mesitis.Apartment" name="detailedInfo" signature="()Ljava/lang/String;" isStatic="false">
+      <SourceLine classname="e.mesitis.Apartment" start="85" end="85" startBytecode="0" endBytecode="283" sourcefile="Apartment.java" sourcepath="e/mesitis/Apartment.java"/>
+    </Method>
+    <Method classname="java.lang.String" name="formatted" signature="([Ljava/lang/Object;)Ljava/lang/String;" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.lang.String" start="4452" end="4452" startBytecode="0" endBytecode="67" sourcefile="String.java" sourcepath="java/lang/String.java"/>
+    </Method>
+    <String value="=== Apartment ===\nMunicipality: %s\nArea: %.2f m²\nConstruction Year: %d\nBedrooms: %d\nBathrooms: %d\nRental Price: €%.2f\nFloor: %s\nParking Spot: %s\nWarehouse: %s\n" role="STRING_FORMAT_STRING"/>
+    <SourceLine classname="e.mesitis.Apartment" start="96" end="96" startBytecode="108" endBytecode="108" sourcefile="Apartment.java" sourcepath="e/mesitis/Apartment.java"/>
+  </BugInstance>
+  <BugInstance type="VA_FORMAT_STRING_USES_NEWLINE" priority="2" rank="20" abbrev="FS" category="BAD_PRACTICE">
+    <Class classname="e.mesitis.DetachedHouse">
+      <SourceLine classname="e.mesitis.DetachedHouse" start="24" end="105" sourcefile="DetachedHouse.java" sourcepath="e/mesitis/DetachedHouse.java"/>
+    </Class>
+    <Method classname="e.mesitis.DetachedHouse" name="detailedInfo" signature="()Ljava/lang/String;" isStatic="false">
+      <SourceLine classname="e.mesitis.DetachedHouse" start="85" end="85" startBytecode="0" endBytecode="240" sourcefile="DetachedHouse.java" sourcepath="e/mesitis/DetachedHouse.java"/>
+    </Method>
+    <Method classname="java.lang.String" name="formatted" signature="([Ljava/lang/Object;)Ljava/lang/String;" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.lang.String" start="4452" end="4452" startBytecode="0" endBytecode="67" sourcefile="String.java" sourcepath="java/lang/String.java"/>
+    </Method>
+    <String value="=== Detached House ===\nMunicipality: %s\nArea: %.2f m²\nConstruction Year: %d\nBedrooms: %d\nBathrooms: %d\nRental Price: €%.2f\nFloors: %d\nPlot Area: %.2f m²\nFireplace: %s\n" role="STRING_FORMAT_STRING"/>
+    <SourceLine classname="e.mesitis.DetachedHouse" start="96" end="96" startBytecode="104" endBytecode="104" sourcefile="DetachedHouse.java" sourcepath="e/mesitis/DetachedHouse.java"/>
+  </BugInstance>
+  <BugInstance type="CT_CONSTRUCTOR_THROW" priority="2" rank="16" abbrev="CT" category="BAD_PRACTICE">
+    <Class classname="e.mesitis.Residence">
+      <SourceLine classname="e.mesitis.Residence" start="24" end="105" sourcefile="Residence.java" sourcepath="e/mesitis/Residence.java"/>
+    </Class>
+    <Method classname="e.mesitis.Residence" name="&lt;init&gt;" signature="(Ljava/lang/String;FIIID)V" isStatic="false">
+      <SourceLine classname="e.mesitis.Residence" start="24" end="35" startBytecode="0" endBytecode="217" sourcefile="Residence.java" sourcepath="e/mesitis/Residence.java"/>
+    </Method>
+    <SourceLine classname="e.mesitis.Residence" start="27" end="27" startBytecode="24" endBytecode="24" sourcefile="Residence.java" sourcepath="e/mesitis/Residence.java"/>
+    <SourceLine classname="e.mesitis.Residence" start="27" end="27" startBytecode="24" endBytecode="24" sourcefile="Residence.java" sourcepath="e/mesitis/Residence.java"/>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP2" priority="2" rank="18" abbrev="EI2" category="MALICIOUS_CODE">
+    <Class classname="e.mesitis.ResidenceDAO">
+      <SourceLine classname="e.mesitis.ResidenceDAO" start="14" end="62" sourcefile="ResidenceDAO.java" sourcepath="e/mesitis/ResidenceDAO.java"/>
+    </Class>
+    <Method classname="e.mesitis.ResidenceDAO" name="&lt;init&gt;" signature="(Ljava/sql/Connection;)V" isStatic="false">
+      <SourceLine classname="e.mesitis.ResidenceDAO" start="14" end="16" startBytecode="0" endBytecode="69" sourcefile="ResidenceDAO.java" sourcepath="e/mesitis/ResidenceDAO.java"/>
+    </Method>
+    <Field classname="e.mesitis.ResidenceDAO" name="connection" signature="Ljava/sql/Connection;" isStatic="false">
+      <SourceLine classname="e.mesitis.ResidenceDAO" sourcefile="ResidenceDAO.java" sourcepath="e/mesitis/ResidenceDAO.java"/>
+    </Field>
+    <LocalVariable name="connection" register="1" pc="6" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="e.mesitis.ResidenceDAO" start="15" end="15" startBytecode="6" endBytecode="6" sourcefile="ResidenceDAO.java" sourcepath="e/mesitis/ResidenceDAO.java"/>
+  </BugInstance>
+  <BugInstance type="WMI_WRONG_MAP_ITERATOR" priority="2" rank="18" abbrev="WMI" category="PERFORMANCE">
+    <Class classname="e.mesitis.ResidenceRegistry">
+      <SourceLine classname="e.mesitis.ResidenceRegistry" start="10" end="195" sourcefile="ResidenceRegistry.java" sourcepath="e/mesitis/ResidenceRegistry.java"/>
+    </Class>
+    <Method classname="e.mesitis.ResidenceRegistry" name="calculateAverageRentPerMunicipality" signature="()Ljava/util/Map;" isStatic="false">
+      <SourceLine classname="e.mesitis.ResidenceRegistry" start="126" end="151" startBytecode="0" endBytecode="484" sourcefile="ResidenceRegistry.java" sourcepath="e/mesitis/ResidenceRegistry.java"/>
+    </Method>
+    <SourceLine classname="e.mesitis.ResidenceRegistry" start="146" end="146" startBytecode="170" endBytecode="170" sourcefile="ResidenceRegistry.java" sourcepath="e/mesitis/ResidenceRegistry.java"/>
+  </BugInstance>
+  <Errors errors="0" missingClasses="0"></Errors>
+  <FindBugsSummary timestamp="Sun, 5 Apr 2026 18:14:01 +0300" total_classes="8" referenced_classes="51" total_bugs="5" total_size="541" num_packages="1" java_version="21.0.5" vm_version="21.0.5+9-LTS-239" cpu_seconds="2.33" clock_seconds="3.51" peak_mbytes="317.30" alloc_mbytes="8112.00" gc_seconds="0.01" priority_2="5">
+    <PackageStats package="e.mesitis" total_bugs="5" total_types="8" total_size="541" priority_2="5">
+      <ClassStats class="e.mesitis.Apartment" sourceFile="Apartment.java" interface="false" size="53" bugs="1" priority_2="1"/>
+      <ClassStats class="e.mesitis.Config" sourceFile="Config.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="e.mesitis.DatabaseConfig" sourceFile="DatabaseConfig.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="e.mesitis.DetachedHouse" sourceFile="DetachedHouse.java" interface="false" size="55" bugs="1" priority_2="1"/>
+      <ClassStats class="e.mesitis.EMesitis" sourceFile="EMesitis.java" interface="false" size="213" bugs="0"/>
+      <ClassStats class="e.mesitis.Residence" sourceFile="Residence.java" interface="false" size="65" bugs="1" priority_2="1"/>
+      <ClassStats class="e.mesitis.ResidenceDAO" sourceFile="ResidenceDAO.java" interface="false" size="33" bugs="1" priority_2="1"/>
+      <ClassStats class="e.mesitis.ResidenceRegistry" sourceFile="ResidenceRegistry.java" interface="false" size="106" bugs="1" priority_2="1"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="442" invocations="658" avgMicrosecondsPerInvocation="673" maxMicrosecondsPerInvocation="23942" standardDeviationMicrosecondsPerInvocation="1583"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="184" invocations="51" avgMicrosecondsPerInvocation="3611" maxMicrosecondsPerInvocation="32008" standardDeviationMicrosecondsPerInvocation="5497"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="161" invocations="663" avgMicrosecondsPerInvocation="244" maxMicrosecondsPerInvocation="2978" standardDeviationMicrosecondsPerInvocation="245"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="142" invocations="249" avgMicrosecondsPerInvocation="570" maxMicrosecondsPerInvocation="6397" standardDeviationMicrosecondsPerInvocation="857"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNoSideEffectMethods" totalMilliseconds="139" invocations="51" avgMicrosecondsPerInvocation="2725" maxMicrosecondsPerInvocation="20291" standardDeviationMicrosecondsPerInvocation="3940"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" totalMilliseconds="92" invocations="68" avgMicrosecondsPerInvocation="1358" maxMicrosecondsPerInvocation="14187" standardDeviationMicrosecondsPerInvocation="2580"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueNumberDataflowFactory" totalMilliseconds="85" invocations="72" avgMicrosecondsPerInvocation="1181" maxMicrosecondsPerInvocation="18753" standardDeviationMicrosecondsPerInvocation="2486"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="81" invocations="98" avgMicrosecondsPerInvocation="833" maxMicrosecondsPerInvocation="28668" standardDeviationMicrosecondsPerInvocation="3007"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="78" invocations="68" avgMicrosecondsPerInvocation="1157" maxMicrosecondsPerInvocation="18175" standardDeviationMicrosecondsPerInvocation="2666"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.EqualsOperandShouldHaveClassCompatibleWithThis" totalMilliseconds="76" invocations="51" avgMicrosecondsPerInvocation="1496" maxMicrosecondsPerInvocation="54136" standardDeviationMicrosecondsPerInvocation="7480"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.UnconditionalValueDerefDataflowFactory" totalMilliseconds="73" invocations="68" avgMicrosecondsPerInvocation="1074" maxMicrosecondsPerInvocation="10425" standardDeviationMicrosecondsPerInvocation="2010"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.MethodGenFactory" totalMilliseconds="72" invocations="70" avgMicrosecondsPerInvocation="1028" maxMicrosecondsPerInvocation="41744" standardDeviationMicrosecondsPerInvocation="5153"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" totalMilliseconds="62" invocations="68" avgMicrosecondsPerInvocation="916" maxMicrosecondsPerInvocation="8346" standardDeviationMicrosecondsPerInvocation="1596"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="59" invocations="51" avgMicrosecondsPerInvocation="1171" maxMicrosecondsPerInvocation="7380" standardDeviationMicrosecondsPerInvocation="1717"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.CFGFactory" totalMilliseconds="56" invocations="70" avgMicrosecondsPerInvocation="800" maxMicrosecondsPerInvocation="17534" standardDeviationMicrosecondsPerInvocation="2201"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.OverridingEqualsNotSymmetrical" totalMilliseconds="51" invocations="51" avgMicrosecondsPerInvocation="1017" maxMicrosecondsPerInvocation="11288" standardDeviationMicrosecondsPerInvocation="2032"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FunctionsThatMightBeMistakenForProcedures" totalMilliseconds="51" invocations="51" avgMicrosecondsPerInvocation="1012" maxMicrosecondsPerInvocation="7091" standardDeviationMicrosecondsPerInvocation="1618"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="48" invocations="614" avgMicrosecondsPerInvocation="79" maxMicrosecondsPerInvocation="2430" standardDeviationMicrosecondsPerInvocation="153"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRefComparison$SpecialTypeAnalysis" totalMilliseconds="45" invocations="40" avgMicrosecondsPerInvocation="1127" maxMicrosecondsPerInvocation="5838" standardDeviationMicrosecondsPerInvocation="1431"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildObligationPolicyDatabase" totalMilliseconds="39" invocations="51" avgMicrosecondsPerInvocation="780" maxMicrosecondsPerInvocation="4296" standardDeviationMicrosecondsPerInvocation="1003"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildStringPassthruGraph" totalMilliseconds="37" invocations="51" avgMicrosecondsPerInvocation="738" maxMicrosecondsPerInvocation="4683" standardDeviationMicrosecondsPerInvocation="1190"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.ConstructorThrow" totalMilliseconds="32" invocations="8" avgMicrosecondsPerInvocation="4092" maxMicrosecondsPerInvocation="12184" standardDeviationMicrosecondsPerInvocation="3904"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.CalledMethods" totalMilliseconds="30" invocations="51" avgMicrosecondsPerInvocation="605" maxMicrosecondsPerInvocation="3861" standardDeviationMicrosecondsPerInvocation="804"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.ResourceInMultipleThreadsDetector" totalMilliseconds="26" invocations="8" avgMicrosecondsPerInvocation="3326" maxMicrosecondsPerInvocation="7948" standardDeviationMicrosecondsPerInvocation="3128"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueRangeAnalysisFactory" totalMilliseconds="22" invocations="70" avgMicrosecondsPerInvocation="316" maxMicrosecondsPerInvocation="7769" standardDeviationMicrosecondsPerInvocation="1133"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindReturnRef" totalMilliseconds="21" invocations="8" avgMicrosecondsPerInvocation="2670" maxMicrosecondsPerInvocation="8854" standardDeviationMicrosecondsPerInvocation="2776"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History></History>
+</BugCollection>
