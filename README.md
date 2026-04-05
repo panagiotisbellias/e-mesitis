@@ -144,7 +144,11 @@ ant clean
 
 ## 🤖 Continuous Integration
 
-The project uses **GitHub Actions** to verify the build on every push and pull request.
+The project uses **GitHub Actions** for:
+
+- Build & test validation
+- Static code analysis (CodeQL, SpotBugs, PMD)
+- Automated releases on version tags
 
 Current CI pipeline:
 - Runs on Ubuntu
@@ -153,7 +157,35 @@ Current CI pipeline:
 
 This ensures the project always builds successfully using Apache Ant.
 
+Workflows:
+- `ant-build.yml` – build & test
+- `codeql.yml` – security analysis
+- `release.yml` – automated releases
+
 (ADR0002 – CI setup with GitHub Actions)
+
+---
+
+## 📚 Documentation
+
+Project documentation is organized as follows:
+
+- `README.md` – Project overview and setup
+- `CONTRIBUTING.md` – Contribution guidelines
+- `CHANGELOG.md` – Version history
+- `ROADMAP.md` – Planned features and direction
+- `docs/adr/` – Architecture Decision Records (ADRs)
+
+---
+
+## 🧭 Architecture Decisions
+
+Key design decisions are documented as ADRs.
+
+Example topics:
+- CI/CD setup
+- Testing strategy
+- Build tooling (Ant)
 
 ---
 

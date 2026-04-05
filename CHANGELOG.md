@@ -18,6 +18,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [2.0.1] - 2026-04-04
+
+### Added
+- Release automation workflow
+- GitHub templates (issues, PR)
+
+### Changed
+- Updated documentation (README, contributing guidelines)
+
+### Fixed
+- H2 test configuration issues
+
+---
+
 ## Guidelines for Future Versions
 
 - **MAJOR** version when you make incompatible API changes
