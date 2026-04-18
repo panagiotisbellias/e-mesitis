@@ -2,7 +2,7 @@
 
 ![CI](https://github.com/panagiotisbellias/e-mesitis/actions/workflows/ant-build.yml/badge.svg)
 
-**Version:** V2.0.1
+**Version:** V3.0.0
 
 Notes for Contributors:
 - section in CHANGELOG.md should be used for ongoing changes
@@ -102,7 +102,7 @@ ant jar
 
 Output:
 ```
-dist/e-mesitis_V2.0.1.jar
+dist/e-mesitis_V3.0.0.jar
 ```
 
 ---
@@ -112,7 +112,7 @@ dist/e-mesitis_V2.0.1.jar
 Even though the app does nothing yet, you can run it to confirm the setup works:
 
 ```bash
-java -cp dist/e-mesitis_V2.0.1.jar e.mesitis.EMesitis
+java -cp dist/e-mesitis_V3.0.0.jar e.mesitis.EMesitis
 ```
 
 Expected result:
