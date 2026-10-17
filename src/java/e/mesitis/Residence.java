@@ -23,15 +23,11 @@ public abstract class Residence {
             double rentalPrice
     ) {
         this.municipality = municipality;
-        if (area < 0) {
-            throw new IllegalArgumentException("Square meters cannot be negative");
-        }
-
-        this.area = area;
-        this.constructionYear = constructionYear;
-        this.bedrooms = bedrooms;
-        this.bathrooms = bathrooms;
-        this.rentalPrice = rentalPrice;
+        setArea(area);
+        setConstructionYear(constructionYear);
+        setBedrooms(bedrooms);
+        setBathrooms(bathrooms);
+        setRentalPrice(rentalPrice);
     }
 
     protected Residence() {}
@@ -59,6 +55,9 @@ public abstract class Residence {
     }
 
     public void setArea(float area) {
+        if (area < 0) {
+            throw new IllegalArgumentException("Area (square meters) cannot be negative.");
+        }
         this.area = area;
     }
 
@@ -67,6 +66,9 @@ public abstract class Residence {
     }
 
     public void setConstructionYear(int constructionYear) {
+        if (constructionYear < 0) {
+            throw new IllegalArgumentException("Construction year cannot be negative.");
+        }
         this.constructionYear = constructionYear;
     }
 
@@ -75,6 +77,9 @@ public abstract class Residence {
     }
 
     public void setBedrooms(int bedrooms) {
+        if (bedrooms < 0) {
+            throw new IllegalArgumentException("Number of bedrooms cannot be negative.");
+        }
         this.bedrooms = bedrooms;
     }
 
@@ -83,6 +88,9 @@ public abstract class Residence {
     }
 
     public void setBathrooms(int bathrooms) {
+        if (bathrooms < 0) {
+            throw new IllegalArgumentException("Number of bathrooms cannot be negative.");
+        }
         this.bathrooms = bathrooms;
     }
 
@@ -91,6 +99,9 @@ public abstract class Residence {
     }
 
     public void setRentalPrice(double rentalPrice) {
+        if (rentalPrice < 0) {
+            throw new IllegalArgumentException("Rental price cannot be negative.");
+        }
         this.rentalPrice = rentalPrice;
     }
 
