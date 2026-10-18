@@ -296,7 +296,19 @@ public class EMesitis {
             logger.info("Area (" + r.area + " m²): ");
         }
         String areaStr = scanner.nextLine();
-        if (!areaStr.isBlank()) r.area = Float.parseFloat(areaStr);
+        if (!areaStr.isBlank()) {
+            try {
+                r.setArea(Float.parseFloat(areaStr));
+            } catch (NumberFormatException ex) {
+                if (logger.isLoggable(Level.WARNING)) {
+                    logger.warning("Invalid area: enter a numeric value.");
+                }
+            } catch (IllegalArgumentException ex) {
+                if (logger.isLoggable(Level.WARNING)) {
+                    logger.warning(ex.getMessage());
+                }
+            }
+        }
 
         if (logger.isLoggable(java.util.logging.Level.INFO)) {
             logger.info("Construction Year (" + r.constructionYear + "): ");

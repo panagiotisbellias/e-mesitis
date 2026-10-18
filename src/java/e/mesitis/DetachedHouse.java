@@ -22,14 +22,14 @@ public class DetachedHouse extends Residence {
             double rentalPrice
     ) {
         super(municipality, area, constructionYear, bedrooms, bathrooms, rentalPrice);
-        this.floors = floors;
-        this.plotArea = plotArea;
+        setFloors(floors);
+        setPlotArea(plotArea);
         this.hasFireplace = hasFireplace;
     }
 
     public DetachedHouse(int floors, float plotArea, boolean hasFireplace) {
-        this.floors = floors;
-        this.plotArea = plotArea;
+        setFloors(floors);
+        setPlotArea(plotArea);
         this.hasFireplace = hasFireplace;
     }
 
@@ -45,6 +45,9 @@ public class DetachedHouse extends Residence {
     }
 
     public void setFloors(int floors) {
+        if (floors <= 0) {
+            throw new IllegalArgumentException("Number of floors must be greater than zero.");
+        }
         this.floors = floors;
     }
 
@@ -53,6 +56,9 @@ public class DetachedHouse extends Residence {
     }
 
     public void setPlotArea(float plotArea) {
+        if (!Float.isFinite(plotArea) || plotArea <= 0) {
+            throw new IllegalArgumentException("Plot area must be a finite value greater than zero.");
+        }
         this.plotArea = plotArea;
     }
 

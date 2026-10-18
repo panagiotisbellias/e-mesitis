@@ -22,13 +22,13 @@ public class Apartment extends Residence {
             double rentalPrice
     ) {
         super(municipality, area, constructionYear, bedrooms, bathrooms, rentalPrice);
-        this.floor = floor;
+        setFloor(floor);
         this.hasParkingSpot = hasParkingSpot;
         this.hasWarehouse = hasWarehouse;
     }
 
     public Apartment(String floor, boolean hasParkingSpot, boolean hasWarehouse) {
-        this.floor = floor;
+        setFloor(floor);
         this.hasParkingSpot = hasParkingSpot;
         this.hasWarehouse = hasWarehouse;
     }
@@ -45,7 +45,10 @@ public class Apartment extends Residence {
     }
 
     public void setFloor(String floor) {
-        this.floor = floor;
+        if (floor == null || floor.isBlank()) {
+            throw new IllegalArgumentException("Apartment floor cannot be null or blank.");
+        }
+        this.floor = floor.trim();
     }
 
     public boolean hasParkingSpot() {

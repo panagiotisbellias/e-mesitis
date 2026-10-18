@@ -58,4 +58,89 @@ public class ResidenceTest {
         );
         assertNotNull(r.getMunicipality());
     }
+
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldRejectBlankMunicipality() {
+        new Apartment(
+                "1st floor", false, false,
+                "   ", 80.0f, 2010, 2, 1, 900.0
+        );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldRejectNullMunicipality() {
+        new Apartment(
+                "1st floor", false, false,
+                null, 80.0f, 2010, 2, 1, 900.0
+        );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldRejectNaNArea() {
+        new Apartment(
+                "1st floor", false, false,
+                "Athens", Float.NaN, 2010, 2, 1, 900.0
+        );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldRejectInfiniteArea() {
+        new Apartment(
+                "1st floor", false, false,
+                "Athens", Float.POSITIVE_INFINITY,
+                2010, 2, 1, 900.0
+        );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldRejectNegativeBedrooms() {
+        new Apartment(
+                "1st floor", false, false,
+                "Athens", 80.0f, 2010, -1, 1, 900.0
+        );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldRejectNegativeBathrooms() {
+        new Apartment(
+                "1st floor", false, false,
+                "Athens", 80.0f, 2010, 2, -1, 900.0
+        );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldRejectNegativeRentalPrice() {
+        new Apartment(
+                "1st floor", false, false,
+                "Athens", 80.0f, 2010, 2, 1, -900.0
+        );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldRejectNaNRentalPrice() {
+        new Apartment(
+                "1st floor", false, false,
+                "Athens", 80.0f, 2010, 2, 1, Double.NaN
+        );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldRejectInfiniteRentalPrice() {
+        new Apartment(
+                "1st floor", false, false,
+                "Athens", 80.0f, 2010, 2, 1,
+                Double.POSITIVE_INFINITY
+        );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldRejectFutureConstructionYear() {
+        new Apartment(
+                "1st floor", false, false,
+                "Athens", 80.0f,
+                java.time.Year.now().getValue() + 1,
+                2, 1, 900.0
+        );
+    }
 }
