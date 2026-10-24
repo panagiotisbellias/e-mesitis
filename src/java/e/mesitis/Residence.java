@@ -1,5 +1,7 @@
 package e.mesitis;
 
+import java.time.Year;
+
 /**
  *
  * @author Panagiotis Bellias
@@ -22,16 +24,12 @@ public abstract class Residence {
             int bathrooms,
             double rentalPrice
     ) {
-        this.municipality = municipality;
-        if (area < 0) {
-            throw new IllegalArgumentException("Square meters cannot be negative");
-        }
-
-        this.area = area;
-        this.constructionYear = constructionYear;
-        this.bedrooms = bedrooms;
-        this.bathrooms = bathrooms;
-        this.rentalPrice = rentalPrice;
+        setMunicipality(municipality);
+        setArea(area);
+        setConstructionYear(constructionYear);
+        setBedrooms(bedrooms);
+        setBathrooms(bathrooms);
+        setRentalPrice(rentalPrice);
     }
 
     protected Residence() {}
@@ -51,7 +49,10 @@ public abstract class Residence {
     }
 
     public void setMunicipality(String municipality) {
-        this.municipality = municipality;
+        if (municipality == null || municipality.isBlank()) {
+            throw new IllegalArgumentException("Municipality cannot be null or blank.");
+        }
+        this.municipality = municipality.trim();
     }
 
     public float getArea() {
@@ -59,6 +60,9 @@ public abstract class Residence {
     }
 
     public void setArea(float area) {
+        if (!Float.isFinite(area) || area < 0) {
+            throw new IllegalArgumentException("Area must be a finite, non-negative value.");
+        }
         this.area = area;
     }
 
@@ -67,6 +71,11 @@ public abstract class Residence {
     }
 
     public void setConstructionYear(int constructionYear) {
+        int currentYear = Year.now().getValue();
+
+        if (constructionYear <= 0 || constructionYear > currentYear) {
+            throw new IllegalArgumentException("Construction year must be between 1 and " + currentYear + ".");
+        }
         this.constructionYear = constructionYear;
     }
 
@@ -75,6 +84,9 @@ public abstract class Residence {
     }
 
     public void setBedrooms(int bedrooms) {
+        if (bedrooms < 0) {
+            throw new IllegalArgumentException("Number of bedrooms cannot be negative.");
+        }
         this.bedrooms = bedrooms;
     }
 
@@ -83,6 +95,9 @@ public abstract class Residence {
     }
 
     public void setBathrooms(int bathrooms) {
+        if (bathrooms < 0) {
+            throw new IllegalArgumentException("Number of bathrooms cannot be negative.");
+        }
         this.bathrooms = bathrooms;
     }
 
@@ -91,6 +106,9 @@ public abstract class Residence {
     }
 
     public void setRentalPrice(double rentalPrice) {
+        if (!Double.isFinite(rentalPrice) || rentalPrice < 0) {
+            throw new IllegalArgumentException("Rental price must be a finite, non-negative value.");
+        }
         this.rentalPrice = rentalPrice;
     }
 
