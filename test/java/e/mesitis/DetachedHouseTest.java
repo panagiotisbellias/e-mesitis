@@ -43,4 +43,65 @@ public class DetachedHouseTest {
         );
         assertTrue(h.getRentalPrice() > 0);
     }
+
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldRejectZeroFloors() {
+        new DetachedHouse(
+                0, 500.0f, false,
+                "Patras", 150.0f, 1995, 3, 2, 200000.0
+        );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldRejectNegativeFloors() {
+        new DetachedHouse(
+                -1, 500.0f, false,
+                "Patras", 150.0f, 1995, 3, 2, 200000.0
+        );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldRejectNegativePlotArea() {
+        new DetachedHouse(
+                2, -500.0f, false,
+                "Patras", 150.0f, 1995, 3, 2, 200000.0
+        );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldRejectNaNPlotArea() {
+        new DetachedHouse(
+                2, Float.NaN, false,
+                "Patras", 150.0f, 1995, 3, 2, 200000.0
+        );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldRejectInfinitePlotArea() {
+        new DetachedHouse(
+                2, Float.POSITIVE_INFINITY, false,
+                "Patras", 150.0f, 1995, 3, 2, 200000.0
+        );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldRejectInvalidFloorsWhenUpdated() {
+        DetachedHouse house = new DetachedHouse(
+                2, 500.0f, false,
+                "Patras", 150.0f, 1995, 3, 2, 200000.0
+        );
+
+        house.setFloors(-1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldRejectInvalidPlotAreaWhenUpdated() {
+        DetachedHouse house = new DetachedHouse(
+                2, 500.0f, false,
+                "Patras", 150.0f, 1995, 3, 2, 200000.0
+        );
+
+        house.setPlotArea(0.0f);
+    }
 }

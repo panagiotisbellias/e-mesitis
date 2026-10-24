@@ -46,4 +46,41 @@ public class ApartmentTest {
         assertTrue(info.contains("Floor"));
         assertTrue(info.contains("Parking"));
     }
+
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldRejectBlankFloor() {
+        new Apartment(
+                "   ", false, false,
+                "Athens", 80.0f, 2010, 2, 1, 900.0
+        );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldRejectNullFloor() {
+        new Apartment(
+                null, false, false,
+                "Athens", 80.0f, 2010, 2, 1, 900.0
+        );
+    }
+
+    @Test
+    public void shouldTrimFloor() {
+        Apartment apartment = new Apartment(
+                "  1st floor  ", false, false,
+                "Athens", 80.0f, 2010, 2, 1, 900.0
+        );
+
+        assertEquals("1st floor", apartment.getFloor());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldRejectBlankFloorWhenUpdated() {
+        Apartment apartment = new Apartment(
+                "1st floor", false, false,
+                "Athens", 80.0f, 2010, 2, 1, 900.0
+        );
+
+        apartment.setFloor(" ");
+    }
 }

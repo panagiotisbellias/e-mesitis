@@ -271,34 +271,40 @@ public class EMesitis {
 
         // Show residences with index
         registry.listResidencesWithIndex();
-        if (logger.isLoggable(java.util.logging.Level.INFO)) {
-        logger.info("Enter index of residence to update: ");
-        }
-        int index = scanner.nextInt();
-        scanner.nextLine(); // consume newline
 
-        Residence r = registry.getResidence(index);
-        if (r == null) {
+        int index = readInteger(
+                scanner
+        );
+
+        Residence residence = registry.getResidence(index);
+
+        if (residence == null) {
             if (logger.isLoggable(Level.WARNING)) {
                 logger.warning("Invalid selection.");
             }
             return;
         }
+
         if (logger.isLoggable(java.util.logging.Level.INFO)) {
             logger.info("Leave empty to keep current value.");
-
-            // Common fields
-            logger.info("Municipality (" + r.municipality + "): ");
         }
+
+        updateMunicipality(scanner, residence);
+        updateArea(scanner, residence);
+        updateConstructionYear(scanner, residence);
+        updateBedrooms(scanner, residence);
+        updateBathrooms(scanner, residence);
+        updateRentalPrice(scanner, residence);
+
         String municipality = scanner.nextLine();
-        if (!municipality.isBlank()) r.municipality = municipality;
+        if (!municipality.isBlank()) residence.municipality = municipality;
         if (logger.isLoggable(java.util.logging.Level.INFO)) {
-            logger.info("Area (" + r.area + " m²): ");
+            logger.info("Area (" + residence.area + " m²): ");
         }
         String areaStr = scanner.nextLine();
         if (!areaStr.isBlank()) {
             try {
-                r.setArea(Float.parseFloat(areaStr));
+                residence.setArea(Float.parseFloat(areaStr));
             } catch (NumberFormatException ex) {
                 if (logger.isLoggable(Level.WARNING)) {
                     logger.warning("Invalid area: enter a numeric value.");
@@ -310,77 +316,312 @@ public class EMesitis {
             }
         }
 
-        if (logger.isLoggable(java.util.logging.Level.INFO)) {
-            logger.info("Construction Year (" + r.constructionYear + "): ");
-        }
-        String yearStr = scanner.nextLine();
-        if (!yearStr.isBlank()) r.constructionYear = Integer.parseInt(yearStr);
-
-        if (logger.isLoggable(java.util.logging.Level.INFO)) {
-            logger.info("Bedrooms (" + r.bedrooms + "): ");
-        }
-        String bedroomsStr = scanner.nextLine();
-        if (!bedroomsStr.isBlank()) r.bedrooms = Integer.parseInt(bedroomsStr);
-
-        if (logger.isLoggable(java.util.logging.Level.INFO)) {
-            logger.info("Bathrooms (" + r.bathrooms + "): ");
-        }
-        String bathroomsStr = scanner.nextLine();
-        if (!bathroomsStr.isBlank()) r.bathrooms = Integer.parseInt(bathroomsStr);
-
-        if (logger.isLoggable(java.util.logging.Level.INFO)) {
-            logger.info("Rental Price (€" + r.rentalPrice + "): ");
-        }
-        String priceStr = scanner.nextLine();
-        if (!priceStr.isBlank()) r.rentalPrice = Double.parseDouble(priceStr);
-
         // Type-specific fields
-        if (r instanceof Apartment) {
-            Apartment apt = (Apartment) r;
-            if (logger.isLoggable(java.util.logging.Level.INFO)) {
-                logger.info("Floor (" + apt.getFloor() + "): ");
-            }
-            String floor = scanner.nextLine();
-            if (!floor.isBlank()) apt.setFloor(floor);
-
-            if (logger.isLoggable(java.util.logging.Level.INFO)) {
-                logger.info("Has parking (" + apt.hasParkingSpot() + "): ");
-            }
-            String parking = scanner.nextLine();
-            if (!parking.isBlank()) apt.setParkingSpot(Boolean.parseBoolean(parking));
-
-            if (logger.isLoggable(java.util.logging.Level.INFO)) {
-                logger.info("Has warehouse (" + apt.hasWarehouse() + "): ");
-            }
-            String warehouse = scanner.nextLine();
-            if (!warehouse.isBlank()) apt.setWarehouse(Boolean.parseBoolean(warehouse));
-
-        } else if (r instanceof DetachedHouse) {
-            DetachedHouse house = (DetachedHouse) r;
-            if (logger.isLoggable(java.util.logging.Level.INFO)) {
-                logger.info("Floors (" + house.getFloors() + "): ");
-            }
-            String floors = scanner.nextLine();
-            if (!floors.isBlank()) house.setFloors(Integer.parseInt(floors));
-
-            if (logger.isLoggable(java.util.logging.Level.INFO)) {
-                logger.info("Plot Area (" + house.getPlotArea() + " m²): ");
-            }
-            String plot = scanner.nextLine();
-            if (!plot.isBlank()) house.setPlotArea(Float.parseFloat(plot));
-
-            if (logger.isLoggable(java.util.logging.Level.INFO)) {
-                logger.info("Has fireplace (" + house.hasFireplace() + "): ");
-            }
-            String fireplace = scanner.nextLine();
-            if (!fireplace.isBlank()) house.setFireplace(Boolean.parseBoolean(fireplace));
+        if (residence instanceof Apartment) {
+            updateApartment(scanner, (Apartment) residence);
+        } else if (residence instanceof DetachedHouse) {
+            updateDetachedHouse(scanner, (DetachedHouse) residence);
         }
 
         if (logger.isLoggable(java.util.logging.Level.INFO)) {
             logger.info("Residence updated successfully!");
-            logger.info(r.basicInfo());
+            logger.info(residence.basicInfo());
         }
     }
 
+    private static void updateMunicipality(
+            Scanner scanner,
+            Residence residence
+    ) {
+        String input = readOptionalInput(
+                scanner,
+                "Municipality (" + residence.municipality + "): "
+        );
+
+        if (input == null) {
+            return;
+        }
+
+        try {
+            residence.setMunicipality(input);
+        } catch (IllegalArgumentException ex) {
+            if (logger.isLoggable(Level.WARNING)) {
+                logger.warning("Municipality not updated: " + ex.getMessage());
+            }
+        }
+    }
+
+    private static void updateArea(
+            Scanner scanner,
+            Residence residence
+    ) {
+        String input = readOptionalInput(
+                scanner,
+                "Area (" + residence.area + " m²): "
+        );
+
+        if (input == null) {
+            return;
+        }
+
+        try {
+            residence.setArea(Float.parseFloat(input));
+        } catch (NumberFormatException ex) {
+            if (logger.isLoggable(Level.WARNING)) {
+                logger.warning("Area not updated: enter a valid number.");
+            }
+        } catch (IllegalArgumentException ex) {
+            if (logger.isLoggable(Level.WARNING)) {
+                logger.warning("Area not updated: " + ex.getMessage());
+            }
+        }
+    }
+
+    private static void updateConstructionYear(
+            Scanner scanner,
+            Residence residence
+    ) {
+        String input = readOptionalInput(
+                scanner,
+                "Construction year (" + residence.constructionYear + "): "
+        );
+
+        if (input == null) {
+            return;
+        }
+
+        try {
+            residence.setConstructionYear(Integer.parseInt(input));
+        } catch (NumberFormatException ex) {
+            if (logger.isLoggable(Level.WARNING)) {
+                logger.warning("Construction year not updated: enter a valid integer.");
+            }
+        } catch (IllegalArgumentException ex) {
+            if (logger.isLoggable(Level.WARNING)) {
+                logger.warning("Construction year not updated: " + ex.getMessage());
+            }
+        }
+    }
+
+    private static void updateBedrooms(
+            Scanner scanner,
+            Residence residence
+    ) {
+        String input = readOptionalInput(
+                scanner,
+                "Bedrooms (" + residence.bedrooms + "): "
+        );
+
+        if (input == null) {
+            return;
+        }
+
+        try {
+            residence.setBedrooms(Integer.parseInt(input));
+        } catch (NumberFormatException ex) {
+            if (logger.isLoggable(Level.WARNING)) {
+                logger.warning("Bedrooms not updated: enter a valid integer.");
+            }
+        } catch (IllegalArgumentException ex) {
+            if (logger.isLoggable(Level.WARNING)) {
+                logger.warning("Bedrooms not updated: " + ex.getMessage());
+            }
+        }
+    }
+
+    private static void updateBathrooms(
+            Scanner scanner,
+            Residence residence
+    ) {
+        String input = readOptionalInput(
+                scanner,
+                "Bathrooms (" + residence.bathrooms + "): "
+        );
+
+        if (input == null) {
+            return;
+        }
+
+        try {
+            residence.setBathrooms(Integer.parseInt(input));
+        } catch (NumberFormatException ex) {
+            if (logger.isLoggable(Level.WARNING)) {
+                logger.warning("Bathrooms not updated: enter a valid integer.");
+            }
+        } catch (IllegalArgumentException ex) {
+            if (logger.isLoggable(Level.WARNING)) {
+                logger.warning("Bathrooms not updated: " + ex.getMessage());
+            }
+        }
+    }
+
+    private static void updateRentalPrice(
+            Scanner scanner,
+            Residence residence
+    ) {
+        String input = readOptionalInput(
+                scanner,
+                "Rental price (€" + residence.rentalPrice + "): "
+        );
+
+        if (input == null) {
+            return;
+        }
+
+        try {
+            residence.setRentalPrice(Double.parseDouble(input));
+        } catch (NumberFormatException ex) {
+            if (logger.isLoggable(Level.WARNING)) {
+                logger.warning("Rental price not updated: enter a valid number.");
+            }
+        } catch (IllegalArgumentException ex) {
+            if (logger.isLoggable(Level.WARNING)) {
+                logger.warning("Rental price not updated: " + ex.getMessage());
+            }
+        }
+    }
+
+    private static void updateApartment(
+            Scanner scanner,
+            Apartment apartment
+    ) {
+        String floor = readOptionalInput(
+                scanner,
+                "Floor (" + apartment.getFloor() + "): "
+        );
+
+        if (floor != null) {
+            try {
+                apartment.setFloor(floor);
+            } catch (IllegalArgumentException ex) {
+                if (logger.isLoggable(Level.WARNING)) {
+                    logger.warning("Floor not updated: " + ex.getMessage());
+                }
+            }
+        }
+
+        Boolean parking = readOptionalBoolean(
+                scanner,
+                "Has parking (" + apartment.hasParkingSpot() + "): "
+        );
+
+        if (parking != null) {
+            apartment.setParkingSpot(parking);
+        }
+
+        Boolean warehouse = readOptionalBoolean(
+                scanner,
+                "Has warehouse (" + apartment.hasWarehouse() + "): "
+        );
+
+        if (warehouse != null) {
+            apartment.setWarehouse(warehouse);
+        }
+    }
+
+    private static void updateDetachedHouse(
+            Scanner scanner,
+            DetachedHouse house
+    ) {
+        String floors = readOptionalInput(
+                scanner,
+                "Floors (" + house.getFloors() + "): "
+        );
+
+        if (floors != null) {
+            try {
+                house.setFloors(Integer.parseInt(floors));
+            } catch (NumberFormatException ex) {
+                if (logger.isLoggable(Level.WARNING)) {
+                    logger.warning("Floors not updated: enter a valid integer.");
+                }
+            } catch (IllegalArgumentException ex) {
+                if (logger.isLoggable(Level.WARNING)) {
+                    logger.warning("Floors not updated: " + ex.getMessage());
+                }
+            }
+        }
+
+        String plotArea = readOptionalInput(
+                scanner,
+                "Plot area (" + house.getPlotArea() + " m²): "
+        );
+
+        if (plotArea != null) {
+            try {
+                house.setPlotArea(Float.parseFloat(plotArea));
+            } catch (NumberFormatException ex) {
+                if (logger.isLoggable(Level.WARNING)) {
+                    logger.warning("Plot area not updated: enter a valid number.");
+                }
+            } catch (IllegalArgumentException ex) {
+                if (logger.isLoggable(Level.WARNING)) {
+                    logger.warning("Plot area not updated: " + ex.getMessage());
+                }
+            }
+        }
+
+        Boolean fireplace = readOptionalBoolean(
+                scanner,
+                "Has fireplace (" + house.hasFireplace() + "): "
+        );
+
+        if (fireplace != null) {
+            house.setFireplace(fireplace);
+        }
+    }
+
+    private static String readOptionalInput(
+            Scanner scanner,
+            String prompt
+    ) {
+        if (logger.isLoggable(Level.INFO)) {
+            logger.info(prompt);
+        }
+        String input = scanner.nextLine().trim();
+        return input.isEmpty() ? null : input;
+    }
+
+    private static Boolean readOptionalBoolean(
+            Scanner scanner,
+            String prompt
+    ) {
+        while (true) {
+            String input = readOptionalInput(scanner, prompt);
+
+            if (input == null) {
+                return null;
+            }
+
+            if ("true".equalsIgnoreCase(input)) {
+                return Boolean.TRUE;
+            }
+
+            if ("false".equalsIgnoreCase(input)) {
+                return Boolean.FALSE;
+            }
+
+            if (logger.isLoggable(Level.WARNING)) {
+                logger.warning("Enter true or false, or leave empty to keep the current value.");
+            }
+        }
+    }
+
+    private static int readInteger(Scanner scanner) {
+        while (true) {
+            if (logger.isLoggable(Level.INFO)) {
+                logger.info("Enter index of residence to update: ");
+            }
+            String input = scanner.nextLine().trim();
+
+            try {
+                return Integer.parseInt(input);
+            } catch (NumberFormatException ex) {
+                if (logger.isLoggable(Level.WARNING)) {
+                    logger.warning("Invalid input: enter a valid integer.");
+                }
+            }
+        }
+    }
     
 }
