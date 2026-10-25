@@ -22,28 +22,44 @@ public class ResidenceRegistry {
     }
 
     // === UC2 ===
-    public void listResidences() {
-        if (logger.isLoggable(java.util.logging.Level.INFO)) {
-            logger.info("=== Available Residences ===");
-        }
 
-        if (residences.isEmpty()) {
-            if (logger.isLoggable(java.util.logging.Level.INFO)) {
-                logger.info("No residences available.");
-            }
+    public void listResidences() {
+        if (!logger.isLoggable(Level.INFO)) {
             return;
         }
 
-        if (logger.isLoggable(java.util.logging.Level.INFO)) {
-            logger.info(String.format(
-                    "%-15s | %-12s | %-8s | %-6s | %-6s | %-10s | Details",
-                    "Type", "Municipality", "Area", "Beds", "Baths", "Rent"
-            ));
+        logger.info("");
+        logger.info("=== Available Residences ===");
 
-            logger.info("--------------------------------------------------------------------------------");
+        if (residences.isEmpty()) {
+            logger.info("No residences available.");
+            return;
+        }
 
-            for (Residence r : residences) {
-                logger.info(r.basicInfo());
+        String header = String.format(
+                "%-15s | %-20s | %10s | %9s | %10s | %12s",
+                "Type",
+                "Municipality",
+                "Area (m²)",
+                "Bedrooms",
+                "Bathrooms",
+                "Rent (€)"
+        );
+
+        logger.info(header);
+        if (logger.isLoggable(Level.INFO)) {
+            logger.info("-".repeat(header.length()));
+
+            for (Residence residence : residences) {
+                logger.info(String.format(
+                        "%-15s | %-20s | %10.1f | %9d | %10d | €%11.2f",
+                        residence.getType(),
+                        residence.getMunicipality(),
+                        residence.getArea(),
+                        residence.getBedrooms(),
+                        residence.getBathrooms(),
+                        residence.getRentalPrice()
+                ));
             }
         }
     }
