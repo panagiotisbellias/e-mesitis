@@ -25,16 +25,25 @@ public class EMesitis {
         while (running) {
             if (logger.isLoggable(java.util.logging.Level.INFO)) {
                 logger.info("""
-                        === e-Mesitis ===
-                        1. Register a new residence
-                        2. View available residences
-                        3. Search residence by criteria
-                        4. Update residence information
-                        5. Delete residence
-                        6. Calculate average rent per municipality
-                        7. View residence details
-                        0. Exit
-                        Choose option:
+                
+                        ========================================
+                                  e-Mesitis
+                        ========================================
+                
+                        RESIDENCE MANAGEMENT
+                          1. Register a new residence
+                          2. View available residences
+                          3. Search residences by criteria
+                          4. Update residence information
+                          5. Delete a residence
+                
+                        REPORTS
+                          6. Calculate average rent per municipality
+                          7. View residence details
+                
+                          0. Exit
+                        ----------------------------------------
+                        Choose an option:
                         """);
             }
 
@@ -68,11 +77,11 @@ public class EMesitis {
                         boolean deleted = registry.deleteResidence(index);
                         if (deleted) {
                             if (logger.isLoggable(java.util.logging.Level.INFO)) {
-                                logger.info("Residence deleted successfully.");
+                                printSuccess("Residence deleted successfully.");
                             }
                         } else {
                             if (logger.isLoggable(Level.WARNING)) {
-                                logger.warning("Invalid residence index.");
+                                printWarning("Invalid residence selection.");
                             }
                         }
                     } else {
@@ -107,7 +116,7 @@ public class EMesitis {
                 }
                 default -> {
                     if (logger.isLoggable(Level.WARNING)) {
-                        logger.warning("Invalid option.");
+                        printWarning("Invalid option.");
                     }
                 }
             }
@@ -119,7 +128,7 @@ public class EMesitis {
     private static void registerResidence(Scanner scanner, ResidenceRegistry registry) {
 
         if (logger.isLoggable(java.util.logging.Level.INFO)) {
-            logger.info("=== Register a New Residence ===");
+            printSection("Register a New Residence");
             logger.info("Enter type (1 = Apartment, 2 = Detached House): ");
         }
         int type = scanner.nextInt();
@@ -208,14 +217,14 @@ public class EMesitis {
         registry.addResidence(residence);
         registry.listResidences();
         if (logger.isLoggable(java.util.logging.Level.INFO)) {
-            logger.info("Residence registered successfully.");
+            printSuccess("Residence registered successfully.");
         }
     }
 
     private static void searchResidences(Scanner scanner, ResidenceRegistry registry) {
 
         if (logger.isLoggable(java.util.logging.Level.INFO)) {
-            logger.info("=== Search Residence by Criteria ===");
+            printSection("Search Residence by Criteria");
 
             logger.info("Municipality (leave empty to ignore): ");
         }
@@ -249,7 +258,7 @@ public class EMesitis {
         }
 
         if (logger.isLoggable(java.util.logging.Level.INFO)) {
-            logger.info("=== Matching Residences ===");
+            printSection("Matching Residences");
             for (Residence r : results) {
                 logger.info(r.basicInfo());
             }
@@ -259,7 +268,7 @@ public class EMesitis {
     private static void updateResidence(Scanner scanner, ResidenceRegistry registry) {
 
         if (logger.isLoggable(java.util.logging.Level.INFO)) {
-            logger.info("=== Update Residence Information ===");
+            printSection("Update Residence Information");
         }
 
         if (registry.getAllResidences().isEmpty()) {
@@ -280,7 +289,7 @@ public class EMesitis {
 
         if (residence == null) {
             if (logger.isLoggable(Level.WARNING)) {
-                logger.warning("Invalid selection.");
+                printWarning("Invalid selection.");
             }
             return;
         }
@@ -307,7 +316,7 @@ public class EMesitis {
                 residence.setArea(Float.parseFloat(areaStr));
             } catch (NumberFormatException ex) {
                 if (logger.isLoggable(Level.WARNING)) {
-                    logger.warning("Invalid area: enter a numeric value.");
+                    printWarning("Invalid area: enter a numeric value.");
                 }
             } catch (IllegalArgumentException ex) {
                 if (logger.isLoggable(Level.WARNING)) {
@@ -324,7 +333,7 @@ public class EMesitis {
         }
 
         if (logger.isLoggable(java.util.logging.Level.INFO)) {
-            logger.info("Residence updated successfully!");
+            printSuccess("Residence updated successfully!");
             logger.info(residence.basicInfo());
         }
     }
@@ -623,5 +632,25 @@ public class EMesitis {
             }
         }
     }
-    
+
+
+    private static void printSection(String title) {
+        if (logger.isLoggable(Level.INFO)) {
+            logger.info("");
+            logger.info("=== " + title + " ===");
+        }
+    }
+
+    private static void printSuccess(String message) {
+        if (logger.isLoggable(Level.INFO)) {
+            logger.info("[SUCCESS] " + message);
+        }
+    }
+
+    private static void printWarning(String message) {
+        if (logger.isLoggable(Level.WARNING)) {
+            logger.warning("[WARNING] " + message);
+        }
+    }
+
 }
