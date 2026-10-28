@@ -40,6 +40,7 @@ public class EMesitis {
                         REPORTS
                           6. Calculate average rent per municipality
                           7. View residence details
+                          8. Export residences to CSV
                 
                           0. Exit
                         ----------------------------------------
@@ -114,6 +115,7 @@ public class EMesitis {
 
                     registry.showResidenceDetails(index);
                 }
+                case 8 -> exportResidencesToCsv(scanner, registry);
                 default -> {
                     if (logger.isLoggable(Level.WARNING)) {
                         printWarning("Invalid option.");
@@ -633,6 +635,32 @@ public class EMesitis {
         }
     }
 
+    private static void exportResidencesToCsv(
+            Scanner scanner,
+            ResidenceRegistry registry) {
+
+        if (logger.isLoggable(Level.INFO)) {
+            logger.info("Enter CSV output path (default: residences.csv):");
+        }
+
+        String input = scanner.nextLine().trim();
+        String output = input.isEmpty() ? "residences.csv" : input;
+
+        try {
+            new ResidenceCsvExporter().export(
+                    registry.getAllResidences(),
+                    java.nio.file.Paths.get(output)
+            );
+
+            if (logger.isLoggable(Level.INFO)) {
+                logger.info("[SUCCESS] Residences exported to: " + output);
+            }
+        } catch (java.io.IOException | java.nio.file.InvalidPathException ex) {
+            if (logger.isLoggable(Level.WARNING)) {
+                logger.warning("CSV export failed: " + ex.getMessage());
+            }
+        }
+    }
 
     private static void printSection(String title) {
         if (logger.isLoggable(Level.INFO)) {
