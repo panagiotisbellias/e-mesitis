@@ -1,0 +1,2 @@
+type,municipality,area_m2,construction_year,bedrooms,bathrooms,rental_price,floor,has_parking_spot,has_warehouse,floors,plot_area_m2,has_fireplace
+Apartment,Pyrgos,55.00,1980,1,1,500.00,1,true,true,,,
