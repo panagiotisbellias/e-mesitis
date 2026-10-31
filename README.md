@@ -34,6 +34,12 @@ We welcome contributions!
 
 ---
 
+## 🤝 Community & Recognition
+
+[![XERJ Corpus Hub contributor](https://hub.xerj.org/contributors/panagiotisbellias/badge.svg)](https://hub.xerj.org/contributors/panagiotisbellias)
+
+---
+
 ## 🚀 Release Process
 
 Releases are automated via GitHub Actions:
